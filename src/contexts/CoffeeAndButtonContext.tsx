@@ -7,8 +7,11 @@ interface CoffeeAndButtonContextData {
   setItemsList: React.Dispatch<React.SetStateAction<CoffeeCardProps[]>>
   buttonsList: QuantityButtonProps[]
   setButtonsList: React.Dispatch<React.SetStateAction<QuantityButtonProps[]>>
-  addCoffeeItem: (coffee: CoffeeCardProps) => void
-  removeCoffeeItem: (coffee: CoffeeCardProps) => void
+  addCoffeeItem: (coffee: CoffeeCardProps, button: QuantityButtonProps) => void
+  removeCoffeeItem: (
+    coffee: CoffeeCardProps,
+    button: QuantityButtonProps,
+  ) => void
   addButtonQuantity: (button: QuantityButtonProps) => void
   removeButtonQuantity: (button: QuantityButtonProps) => void
 }
@@ -26,51 +29,6 @@ export function CoffeeContextProvider({
 }: CoffeeAndButtonContextProps) {
   const [itemsList, setItemsList] = useState<CoffeeCardProps[]>([])
   const [buttonsList, setButtonsList] = useState<QuantityButtonProps[]>([])
-
-  const addCoffeeItem = (coffee: CoffeeCardProps) => {
-    const existingItem = itemsList.find((item) => item.id === coffee.id)
-
-    if (existingItem) {
-      const updatedItem = {
-        ...existingItem,
-        quantity: existingItem.quantity + 1,
-      }
-
-      const updatedList = itemsList.map((item) =>
-        item.id === coffee.id ? updatedItem : item,
-      )
-
-      setItemsList(updatedList)
-    } else {
-      const newItem = { ...coffee, quantity: 1 }
-      setItemsList([...itemsList, newItem])
-    }
-  }
-
-  const removeCoffeeItem = (coffee: CoffeeCardProps) => {
-    if (itemsList.length > 0) {
-      const existingItem = itemsList.find((item) => item.id === coffee.id)
-
-      if (existingItem && existingItem.quantity > 1) {
-        const updatedItem = {
-          ...existingItem,
-          quantity: existingItem.quantity - 1,
-        }
-
-        const updatedList = itemsList.map((item) =>
-          item.id === coffee.id ? updatedItem : item,
-        )
-
-        setItemsList(updatedList)
-      } else {
-        const coffeeListWithoutRemovedOne = itemsList.filter(
-          (item) => item.id !== coffee.id,
-        )
-
-        setItemsList(coffeeListWithoutRemovedOne)
-      }
-    }
-  }
 
   const addButtonQuantity = (button: QuantityButtonProps) => {
     const existingItem = itemsList.find((item) => item.id === button.id)
@@ -98,12 +56,67 @@ export function CoffeeContextProvider({
         quantity: existingItem.quantity > 1 ? existingItem.quantity - 1 : 0,
       }
 
-      const updatedList = itemsList.map((item) =>
+      const updatedList = buttonsList.map((item) =>
         item.id === button.id ? updatedItem : item,
       )
 
-      setItemsList(updatedList)
+      setButtonsList(updatedList)
     }
+  }
+
+  const addCoffeeItem = (
+    coffee: CoffeeCardProps,
+    button: QuantityButtonProps,
+  ) => {
+    const existingCoffeeItem = itemsList.find((item) => item.id === coffee.id)
+
+    if (existingCoffeeItem) {
+      const updatedCoffeeItem = {
+        ...existingCoffeeItem,
+        quantity: existingCoffeeItem.quantity + 1,
+      }
+
+      const updatedCoffeeList = itemsList.map((item) =>
+        item.id === coffee.id ? updatedCoffeeItem : item,
+      )
+
+      setItemsList(updatedCoffeeList)
+    } else {
+      const newItem = { ...coffee, quantity: 1 }
+      setItemsList([...itemsList, newItem])
+    }
+
+    addButtonQuantity(button)
+  }
+
+  const removeCoffeeItem = (
+    coffee: CoffeeCardProps,
+    button: QuantityButtonProps,
+  ) => {
+    if (itemsList.length > 0) {
+      const existingItem = itemsList.find((item) => item.id === coffee.id)
+
+      if (existingItem && existingItem.quantity > 1) {
+        const updatedItem = {
+          ...existingItem,
+          quantity: existingItem.quantity - 1,
+        }
+
+        const updatedList = itemsList.map((item) =>
+          item.id === coffee.id ? updatedItem : item,
+        )
+
+        setItemsList(updatedList)
+      } else {
+        const coffeeListWithoutRemovedOne = itemsList.filter(
+          (item) => item.id !== coffee.id,
+        )
+
+        setItemsList(coffeeListWithoutRemovedOne)
+      }
+    }
+
+    removeButtonQuantity(button)
   }
 
   const coffeeAndButtonContextValue: CoffeeAndButtonContextData = {

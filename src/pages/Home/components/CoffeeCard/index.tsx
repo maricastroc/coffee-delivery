@@ -22,6 +22,11 @@ export interface CoffeeCardProps {
 export function CoffeeCard(props: CoffeeCardProps) {
   const [quantity, setQuantity] = useState(props.quantity)
 
+  const button = {
+    id: props.id,
+    quantity,
+  }
+
   useEffect(() => {
     console.log(quantity)
   }, [quantity])
@@ -30,10 +35,10 @@ export function CoffeeCard(props: CoffeeCardProps) {
 
   const handleSetCoffeeItem = (operation: string) => {
     if (operation === 'add') {
-      addCoffeeItem(props)
+      addCoffeeItem(props, button)
       setQuantity(quantity + 1)
     } else {
-      removeCoffeeItem(props)
+      removeCoffeeItem(props, button)
       setQuantity(quantity - 1)
     }
   }
@@ -56,7 +61,7 @@ export function CoffeeCard(props: CoffeeCardProps) {
         <div>
           <QuantityButton
             id={props.id}
-            quantity={props.quantity}
+            quantity={quantity}
             onClick={handleSetCoffeeItem}
           />
           <NavLink to="/checkout" title="Checkout">

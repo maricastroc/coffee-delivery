@@ -7,7 +7,7 @@ import { CoffeeCardProps } from '../../pages/Home/components/CoffeeCard'
 export interface QuantityButtonProps {
   id: number
   quantity: number
-  onClick: (operation: string, value: number) => void
+  onClick?: (operation: string, value: number) => void
 }
 
 export function QuantityButton(props: QuantityButtonProps) {
@@ -51,7 +51,7 @@ export function QuantityButton(props: QuantityButtonProps) {
           }
         }}
       />
-      <p>{quantity}</p>
+      <p>{props.quantity}</p>
       <Plus
         size={16}
         onClick={() => {

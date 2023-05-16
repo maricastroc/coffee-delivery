@@ -21,12 +21,17 @@ export function ShopCard(props: CoffeeCardProps) {
 
   const { addCoffeeItem, removeCoffeeItem } = useContext(CoffeeAndButtonContext)
 
+  const button = {
+    id: props.id,
+    quantity,
+  }
+
   const handleSetCoffeeItem = (operation: string) => {
     if (operation === 'add') {
-      addCoffeeItem(props)
+      addCoffeeItem(props, button)
       setQuantity(quantity + 1)
     } else {
-      removeCoffeeItem(props)
+      removeCoffeeItem(props, button)
       setQuantity(quantity - 1)
     }
   }
