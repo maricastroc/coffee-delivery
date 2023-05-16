@@ -19,7 +19,7 @@ export interface CoffeeCardProps {
   tags: string[]
   img_source: string
   price: string
-  quantity: 0
+  quantity: number
 }
 
 export function CoffeeCard(props: CoffeeCardProps) {
@@ -34,7 +34,7 @@ export function CoffeeCard(props: CoffeeCardProps) {
     if (existingItem) {
       const updatedItem = {
         ...existingItem,
-        quantity: value,
+        quantity: props.quantity++,
       }
 
       const updatedList = itemsList.map((item: ItemsListProps) => {
@@ -101,6 +101,7 @@ export function CoffeeCard(props: CoffeeCardProps) {
         </span>
         <div>
           <QuantityButton
+            id={props.id}
             onClick={handleSetCoffeeItem}
             initialValue={props.quantity}
           />

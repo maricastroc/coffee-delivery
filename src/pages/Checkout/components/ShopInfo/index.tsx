@@ -26,6 +26,7 @@ export function ShopInfo() {
                   title={item.title}
                   image_source={item.img_source}
                   price={item.price}
+                  quantity={item.quantity}
                 />
                 <span></span>
               </>

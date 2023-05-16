@@ -18,6 +18,7 @@ import { CoffeeCardProps } from '../../../../../Home/components/CoffeeCard'
 interface ShopCardProps {
   title: string
   image_source: string
+  quantity: number
   price: string
   id: number
 }
@@ -87,7 +88,11 @@ export function ShopCard(props: ShopCardProps) {
             <strong>$ {props.price}</strong>
           </TextContainer>
           <ButtonsContainer>
-            <QuantityButton onClick={handleSetCoffeeItem} />
+            <QuantityButton
+              onClick={handleSetCoffeeItem}
+              initialValue={props.quantity}
+              id={props.id}
+            />
             <RemoveButton>
               <Trash size={16} />
               <p>Remove</p>
