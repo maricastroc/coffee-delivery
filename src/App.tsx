@@ -3,7 +3,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { Router } from './Router'
 import { defaultTheme } from './styles/themes/default'
 import { GlobalStyle } from './styles/global'
-import { CoffeeContextProvider } from './contexts/CoffeeContext'
+import { CoffeeContextProvider } from './contexts/CoffeeAndButtonContext'
 
 export function App() {
   return (

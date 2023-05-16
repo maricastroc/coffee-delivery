@@ -9,7 +9,7 @@ import {
 } from './styles'
 
 import { useContext } from 'react'
-import { CoffeeContext } from '../../contexts/CoffeeContext'
+import { CoffeeContext } from '../../contexts/CoffeeAndButtonContext'
 import { CoffeeCard } from './components/CoffeeCard'
 import CoffeeList from '../../data/coffee-types.json'
 

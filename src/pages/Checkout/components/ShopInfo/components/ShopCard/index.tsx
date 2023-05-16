@@ -8,74 +8,27 @@ import {
   ShopCardText,
   TextContainer,
 } from './styles'
-import { useContext } from 'react'
-import {
-  CoffeeContext,
-  ItemsListProps,
-} from '../../../../../../contexts/CoffeeContext'
+import { useContext, useEffect, useState } from 'react'
+import { CoffeeAndButtonContext } from '../../../../../../contexts/CoffeeAndButtonContext'
 import { CoffeeCardProps } from '../../../../../Home/components/CoffeeCard'
 
-interface ShopCardProps {
-  title: string
-  image_source: string
-  quantity: number
-  price: string
-  id: number
-}
+export function ShopCard(props: CoffeeCardProps) {
+  const [quantity, setQuantity] = useState(props.quantity)
 
-export function ShopCard(props: ShopCardProps) {
-  const { itemsList, setItemsList } = useContext(CoffeeContext)
+  useEffect(() => {
+    console.log(quantity)
+  }, [quantity])
 
-  const addCoffeeItem = (value: number) => {
-    const existingItem = itemsList.find(
-      (item: ItemsListProps) => item.id === props.id,
-    )
+  const { addCoffeeItem, removeCoffeeItem } = useContext(CoffeeAndButtonContext)
 
-    if (existingItem) {
-      const updatedItem = {
-        ...existingItem,
-        quantity: value,
-      }
-
-      const updatedList = itemsList.map((item: ItemsListProps) => {
-        return item.id === props.id ? updatedItem : item
-      })
-
-      setItemsList(updatedList)
+  const handleSetCoffeeItem = (operation: string) => {
+    if (operation === 'add') {
+      addCoffeeItem(props)
+      setQuantity(quantity + 1)
     } else {
-      const newItem = { ...props, quantity: value }
-      setItemsList([...itemsList, newItem])
+      removeCoffeeItem(props)
+      setQuantity(quantity - 1)
     }
-  }
-
-  const removeCoffeeItem = (value: number) => {
-    const existingItem = itemsList.find(
-      (item: ItemsListProps) => item.id === props.id,
-    )
-
-    if (existingItem && existingItem.quantity > 1) {
-      const updatedItem = {
-        ...existingItem,
-        quantity: value,
-      }
-
-      const updatedList = itemsList.map((item: ItemsListProps) => {
-        return item.id === props.id ? updatedItem : item
-      })
-
-      setItemsList(updatedList)
-    } else {
-      const coffeeListWithoutRemovedOne = itemsList.filter(
-        (item: CoffeeCardProps) => {
-          return item.id !== props.id
-        },
-      )
-      setItemsList(coffeeListWithoutRemovedOne)
-    }
-  }
-
-  const handleSetCoffeeItem = (operation: string, value: number) => {
-    operation === 'add' ? addCoffeeItem(value) : removeCoffeeItem(value)
   }
 
   return (
@@ -90,7 +43,7 @@ export function ShopCard(props: ShopCardProps) {
           <ButtonsContainer>
             <QuantityButton
               onClick={handleSetCoffeeItem}
-              initialValue={props.quantity}
+              quantity={props.quantity}
               id={props.id}
             />
             <RemoveButton>
