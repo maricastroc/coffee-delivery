@@ -1,9 +1,9 @@
-import React, { createContext, ReactNode, useState } from 'react'
+import { createContext, ReactNode, useReducer } from 'react'
+import { ActionTypes, coffeeListReducer } from '../reducers/reducer'
 import { CoffeeCardProps } from '../pages/Home/components/CoffeeCard'
 
 interface CoffeeListContextData {
   itemsList: CoffeeCardProps[]
-  setItemsList: React.Dispatch<React.SetStateAction<CoffeeCardProps[]>>
   increaseCoffeeQuantity: (coffee: CoffeeCardProps) => void
   decreaseCoffeeQuantity: (coffee: CoffeeCardProps) => void
   removeCoffeeItem: (coffee: CoffeeCardProps) => void
@@ -20,62 +20,34 @@ interface CoffeeListContextProps {
 export function CoffeeListContextProvider({
   children,
 }: CoffeeListContextProps) {
-  const [itemsList, setItemsList] = useState<CoffeeCardProps[]>([])
+  const [itemsList, dispatch] = useReducer(coffeeListReducer, [])
 
   const removeCoffeeItem = (coffee: CoffeeCardProps) => {
-    if (itemsList.length > 0) {
-      const coffeeListWithoutRemovedOne = itemsList.filter(
-        (item) => item.id !== coffee.id,
-      )
-
-      setItemsList(coffeeListWithoutRemovedOne)
-    }
+    dispatch({ type: ActionTypes.REMOVE_COFFEE, id: coffee.id })
   }
 
   const increaseCoffeeQuantity = (coffee: CoffeeCardProps) => {
     const existingCoffeeItem = itemsList.find((item) => item.id === coffee.id)
 
     if (existingCoffeeItem) {
-      const updatedCoffeeItem = {
-        ...existingCoffeeItem,
-        quantity: existingCoffeeItem.quantity + 1,
-      }
-
-      const updatedCoffeeList = itemsList.map((item) =>
-        item.id === coffee.id ? updatedCoffeeItem : item,
-      )
-
-      setItemsList(updatedCoffeeList)
+      dispatch({ type: ActionTypes.INCREASE_QUANTITY, id: coffee.id })
     } else {
-      const newItem = { ...coffee, quantity: 1 }
-      setItemsList([...itemsList, newItem])
+      dispatch({ type: ActionTypes.ADD_COFFEE, coffee })
     }
   }
 
   const decreaseCoffeeQuantity = (coffee: CoffeeCardProps) => {
-    if (itemsList.length > 0) {
-      const existingItem = itemsList.find((item) => item.id === coffee.id)
+    const existingItem = itemsList.find((item) => item.id === coffee.id)
 
-      if (existingItem && existingItem.quantity > 1) {
-        const updatedItem = {
-          ...existingItem,
-          quantity: existingItem.quantity - 1,
-        }
-
-        const updatedList = itemsList.map((item) =>
-          item.id === coffee.id ? updatedItem : item,
-        )
-
-        setItemsList(updatedList)
-      } else {
-        removeCoffeeItem(coffee)
-      }
+    if (existingItem && existingItem.quantity > 1) {
+      dispatch({ type: ActionTypes.DECREASE_QUANTITY, id: coffee.id })
+    } else {
+      removeCoffeeItem(coffee)
     }
   }
 
   const coffeeListContextValue: CoffeeListContextData = {
     itemsList,
-    setItemsList,
     increaseCoffeeQuantity,
     decreaseCoffeeQuantity,
     removeCoffeeItem,
