@@ -1,9 +1,9 @@
 import { useContext } from 'react'
-import { CoffeeContext } from '../../../../contexts/CoffeeContext'
+import { CoffeeListContext } from '../../../../contexts/CoffeeListContext'
 import { ShopCard } from './components/ShopCard'
 import {
   ConfirmButton,
-  ShopCardContainer,
+  ShopCardsContainer,
   ShopInfoBox,
   ShopInfoContainer,
   ShopInfoTextContainer,
@@ -11,12 +11,12 @@ import {
 import { CoffeeCardProps } from '../../../Home/components/CoffeeCard'
 
 export function ShopInfo() {
-  const { itemsList } = useContext(CoffeeContext)
+  const { itemsList } = useContext(CoffeeListContext)
   return (
     <ShopInfoContainer>
       <h2>Selected coffees</h2>
       <ShopInfoBox>
-        <ShopCardContainer>
+        <ShopCardsContainer>
           {itemsList.map((item: CoffeeCardProps) => {
             return (
               <>
@@ -24,14 +24,17 @@ export function ShopInfo() {
                   key={item.id}
                   id={item.id}
                   title={item.title}
-                  image_source={item.img_source}
+                  subtitle={item.subtitle}
+                  tags={item.tags}
+                  img_source={item.img_source}
                   price={item.price}
+                  quantity={item.quantity}
                 />
                 <span></span>
               </>
             )
           })}
-        </ShopCardContainer>
+        </ShopCardsContainer>
         <ShopInfoTextContainer>
           <div>
             <p>Total itens</p>

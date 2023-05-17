@@ -8,14 +8,10 @@ import {
   PerfectCoffeeText,
 } from './styles'
 
-import { useContext } from 'react'
-import { CoffeeContext } from '../../contexts/CoffeeContext'
 import { CoffeeCard } from './components/CoffeeCard'
 import CoffeeList from '../../data/coffee-types.json'
 
 export function Home() {
-  const { itemsList } = useContext(CoffeeContext)
-  console.log(itemsList)
   const coffeeList = CoffeeList
 
   return (
@@ -73,8 +69,9 @@ export function Home() {
                 title={coffee.title}
                 subtitle={coffee.subtitle}
                 tags={coffee.tags}
-                img_source={coffee.image_source}
+                img_source={coffee.img_source}
                 price={coffee.price}
+                quantity={coffee.quantity}
               />
             )
           })}

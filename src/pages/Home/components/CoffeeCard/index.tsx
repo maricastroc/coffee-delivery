@@ -1,5 +1,4 @@
 import { NavLink } from 'react-router-dom'
-import { useContext, useState } from 'react'
 import {
   CoffeeCardContainer,
   ShopButton,
@@ -7,10 +6,8 @@ import {
   FeaturesCardContainer,
 } from './styles'
 import { QuantityButton } from '../../../../components/QuantityButton'
-import {
-  CoffeeContext,
-  ItemsListProps,
-} from '../../../../contexts/CoffeeContext'
+import { useContext, useEffect, useState } from 'react'
+import { CoffeeListContext } from '../../../../contexts/CoffeeListContext'
 
 export interface CoffeeCardProps {
   id: number
@@ -19,70 +16,20 @@ export interface CoffeeCardProps {
   tags: string[]
   img_source: string
   price: string
-  quantity: 0
+  quantity: number
 }
 
 export function CoffeeCard(props: CoffeeCardProps) {
-  const { itemsList, setItemsList } = useContext(CoffeeContext)
-  const [quantity, setQuantity] = useState(0)
+  const [updatedQuantity, setUpdatedQuantity] = useState(props.quantity)
+  const { itemsList } = useContext(CoffeeListContext)
 
-  const addCoffeeItem = (value: number) => {
-    const existingItem = itemsList.find(
-      (item: ItemsListProps) => item.id === props.id,
-    )
-
-    if (existingItem) {
-      const updatedItem = {
-        ...existingItem,
-        quantity: value,
-      }
-
-      const updatedList = itemsList.map((item: ItemsListProps) => {
-        return item.id === props.id ? updatedItem : item
-      })
-
-      setItemsList(updatedList)
-    } else {
-      const newItem = { ...props, quantity: value }
-      setItemsList([...itemsList, newItem])
+  useEffect(() => {
+    const existingCoffeeItem = itemsList.find((item) => item.id === props.id)
+    const existingQuantity = existingCoffeeItem?.quantity || 0
+    if (existingQuantity !== props.quantity) {
+      setUpdatedQuantity(existingQuantity)
     }
-  }
-
-  const removeCoffeeItem = (value: number) => {
-    const existingItem = itemsList.find(
-      (item: ItemsListProps) => item.id === props.id,
-    )
-
-    if (existingItem && existingItem.quantity > 1) {
-      const updatedItem = {
-        ...existingItem,
-        quantity: value,
-      }
-
-      const updatedList = itemsList.map((item: ItemsListProps) => {
-        return item.id === props.id ? updatedItem : item
-      })
-
-      setItemsList(updatedList)
-    } else {
-      const coffeeListWithoutRemovedOne = itemsList.filter(
-        (item: CoffeeCardProps) => {
-          return item.id !== props.id
-        },
-      )
-      setItemsList(coffeeListWithoutRemovedOne)
-    }
-  }
-
-  const handleSetCoffeeItem = (operation: string, value: number) => {
-    if (operation === 'add') {
-      addCoffeeItem(value)
-      setQuantity(quantity + 1)
-    } else {
-      removeCoffeeItem(value)
-      setQuantity(quantity - 1)
-    }
-  }
+  }, [itemsList, props.id, props.quantity])
 
   return (
     <CoffeeCardContainer>
@@ -101,8 +48,18 @@ export function CoffeeCard(props: CoffeeCardProps) {
         </span>
         <div>
           <QuantityButton
-            onClick={handleSetCoffeeItem}
-            initialValue={props.quantity}
+            key={props.id}
+            id={props.id}
+            title={props.title}
+            subtitle={props.subtitle}
+            tags={props.tags}
+            img_source={props.img_source}
+            price={props.price}
+            quantity={
+              updatedQuantity === props.quantity
+                ? props.quantity
+                : updatedQuantity
+            }
           />
           <NavLink to="/checkout" title="Checkout">
             <ShopButton>

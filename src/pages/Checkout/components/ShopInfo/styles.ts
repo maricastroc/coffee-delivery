@@ -23,7 +23,7 @@ export const ShopInfoBox = styled.div`
   }
 `
 
-export const ShopCardContainer = styled.div`
+export const ShopCardsContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.5rem;

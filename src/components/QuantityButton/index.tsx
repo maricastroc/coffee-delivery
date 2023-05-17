@@ -1,36 +1,50 @@
 import { Minus, Plus } from 'phosphor-react'
-import { QuantityButtonContainer } from './styles'
-import { useState } from 'react'
+import { ButtonContainer, QuantityButtonContainer } from './styles'
+import { useContext, useState, useEffect } from 'react'
+import { CoffeeListContext } from '../../contexts/CoffeeListContext'
 
-interface QuantityButtonProps {
-  onClick: (operation: string, value: number) => void
-  initialValue: number // Valor inicial para "quantity"
+export interface QuantityButtonProps {
+  id: number
+  title: string
+  subtitle: string
+  tags: string[]
+  img_source: string
+  price: string
+  quantity?: number
 }
 
 export function QuantityButton(props: QuantityButtonProps) {
-  const [quantity, setQuantity] = useState(props.initialValue)
+  const { increaseCoffeeQuantity, decreaseCoffeeQuantity } =
+    useContext(CoffeeListContext)
+  const [quantity, setQuantity] = useState(props.quantity || 0)
+
+  useEffect(() => {
+    setQuantity(props.quantity || 0)
+  }, [props.quantity])
+
+  const handleAddClick = () => {
+    const newQuantity = quantity + 1
+    setQuantity(newQuantity)
+    increaseCoffeeQuantity({ ...props, quantity: newQuantity })
+  }
+
+  const handleRemoveClick = () => {
+    if (quantity > 0) {
+      const newQuantity = quantity - 1
+      setQuantity(newQuantity)
+      decreaseCoffeeQuantity({ ...props, quantity: newQuantity })
+    }
+  }
 
   return (
     <QuantityButtonContainer>
-      <Minus
-        size={16}
-        onClick={() => {
-          if (quantity > 1) {
-            const updatedQuantity = quantity - 1
-            setQuantity(updatedQuantity)
-            props.onClick('remove', updatedQuantity)
-          }
-        }}
-      />
+      <ButtonContainer disabled={quantity === 0}>
+        <Minus size={16} onClick={handleRemoveClick} />
+      </ButtonContainer>
       <p>{quantity}</p>
-      <Plus
-        size={16}
-        onClick={() => {
-          const updatedQuantity = quantity + 1
-          setQuantity(updatedQuantity)
-          props.onClick('add', updatedQuantity)
-        }}
-      />
+      <ButtonContainer>
+        <Plus size={16} onClick={handleAddClick} />
+      </ButtonContainer>
     </QuantityButtonContainer>
   )
 }

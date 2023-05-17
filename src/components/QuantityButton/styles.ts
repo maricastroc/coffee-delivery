@@ -21,3 +21,19 @@ export const QuantityButtonContainer = styled.span`
     }
   }
 `
+
+export const ButtonContainer = styled.button`
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: none;
+  background-color: transparent;
+
+  > svg {
+    color: ${(props) => props.theme['purple-medium']};
+
+    &:hover {
+      color: ${(props) => props.theme['purple-dark']};
+    }
+  }
+`

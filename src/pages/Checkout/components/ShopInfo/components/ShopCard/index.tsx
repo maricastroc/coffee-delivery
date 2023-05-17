@@ -8,87 +8,34 @@ import {
   ShopCardText,
   TextContainer,
 } from './styles'
-import { useContext } from 'react'
-import {
-  CoffeeContext,
-  ItemsListProps,
-} from '../../../../../../contexts/CoffeeContext'
 import { CoffeeCardProps } from '../../../../../Home/components/CoffeeCard'
+import { CoffeeListContext } from '../../../../../../contexts/CoffeeListContext'
+import { useContext } from 'react'
 
-interface ShopCardProps {
-  title: string
-  image_source: string
-  price: string
-  id: number
-}
-
-export function ShopCard(props: ShopCardProps) {
-  const { itemsList, setItemsList } = useContext(CoffeeContext)
-
-  const addCoffeeItem = (value: number) => {
-    const existingItem = itemsList.find(
-      (item: ItemsListProps) => item.id === props.id,
-    )
-
-    if (existingItem) {
-      const updatedItem = {
-        ...existingItem,
-        quantity: value,
-      }
-
-      const updatedList = itemsList.map((item: ItemsListProps) => {
-        return item.id === props.id ? updatedItem : item
-      })
-
-      setItemsList(updatedList)
-    } else {
-      const newItem = { ...props, quantity: value }
-      setItemsList([...itemsList, newItem])
-    }
-  }
-
-  const removeCoffeeItem = (value: number) => {
-    const existingItem = itemsList.find(
-      (item: ItemsListProps) => item.id === props.id,
-    )
-
-    if (existingItem && existingItem.quantity > 1) {
-      const updatedItem = {
-        ...existingItem,
-        quantity: value,
-      }
-
-      const updatedList = itemsList.map((item: ItemsListProps) => {
-        return item.id === props.id ? updatedItem : item
-      })
-
-      setItemsList(updatedList)
-    } else {
-      const coffeeListWithoutRemovedOne = itemsList.filter(
-        (item: CoffeeCardProps) => {
-          return item.id !== props.id
-        },
-      )
-      setItemsList(coffeeListWithoutRemovedOne)
-    }
-  }
-
-  const handleSetCoffeeItem = (operation: string, value: number) => {
-    operation === 'add' ? addCoffeeItem(value) : removeCoffeeItem(value)
-  }
+export function ShopCard(props: CoffeeCardProps) {
+  const { removeCoffeeItem } = useContext(CoffeeListContext)
 
   return (
     <ShopCardContainer>
       <InfoContainer>
-        <img src="/assets/coffees/traditional-espresso.png" alt="" />
+        <img src={props.img_source} alt="" />
         <ShopCardText>
           <TextContainer>
             <p>{props.title}</p>
             <strong>$ {props.price}</strong>
           </TextContainer>
           <ButtonsContainer>
-            <QuantityButton onClick={handleSetCoffeeItem} />
-            <RemoveButton>
+            <QuantityButton
+              key={props.id}
+              id={props.id}
+              title={props.title}
+              subtitle={props.subtitle}
+              tags={props.tags}
+              img_source={props.img_source}
+              price={props.price}
+              quantity={props.quantity}
+            />
+            <RemoveButton onClick={() => removeCoffeeItem(props)}>
               <Trash size={16} />
               <p>Remove</p>
             </RemoveButton>
