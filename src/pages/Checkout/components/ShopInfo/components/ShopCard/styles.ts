@@ -10,6 +10,7 @@ export const InfoContainer = styled.div`
   display: flex;
   gap: 1.25rem;
   align-items: flex-start;
+  width: 100%;
 
   img {
     width: 4rem;
@@ -21,6 +22,7 @@ export const ShopCardText = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
+  width: 100%;
 `
 
 export const TextContainer = styled.div`
@@ -39,7 +41,7 @@ export const TextContainer = styled.div`
   }
 
   @media (min-width: 1440px) {
-    gap: 5.5rem;
+    display: flex;
 
     > p {
       width: auto;
@@ -50,18 +52,19 @@ export const TextContainer = styled.div`
 export const ButtonsContainer = styled.div`
   margin-top: 0.5rem;
   display: flex;
-  align-items: center;
   gap: 0.5rem;
 `
 
 export const RemoveButton = styled.div`
+  cursor: pointer;
   display: flex;
   align-items: center;
   gap: 0.3rem;
-  padding: 0.4rem;
+  padding: 0.45rem;
   border: none;
   border-radius: 8px;
   background-color: ${(props) => props.theme['base-button']};
+  transition: 300ms;
 
   svg {
     color: ${(props) => props.theme['purple-medium']};
@@ -71,5 +74,13 @@ export const RemoveButton = styled.div`
     color: ${(props) => props.theme['base-text']};
     font-size: 0.75rem;
     text-transform: uppercase;
+  }
+
+  &:hover {
+    background-color: ${(props) => props.theme['base-hover']};
+
+    svg {
+      color: ${(props) => props.theme['purple-dark']};
+    }
   }
 `

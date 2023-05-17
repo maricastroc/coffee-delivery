@@ -8,38 +8,17 @@ import {
   ShopCardText,
   TextContainer,
 } from './styles'
-import { useContext, useEffect, useState } from 'react'
-import { CoffeeAndButtonContext } from '../../../../../../contexts/CoffeeAndButtonContext'
 import { CoffeeCardProps } from '../../../../../Home/components/CoffeeCard'
+import { CoffeeListContext } from '../../../../../../contexts/CoffeeListContext'
+import { useContext } from 'react'
 
 export function ShopCard(props: CoffeeCardProps) {
-  const [quantity, setQuantity] = useState(props.quantity)
-
-  useEffect(() => {
-    console.log(quantity)
-  }, [quantity])
-
-  const { addCoffeeItem, removeCoffeeItem } = useContext(CoffeeAndButtonContext)
-
-  const button = {
-    id: props.id,
-    quantity,
-  }
-
-  const handleSetCoffeeItem = (operation: string) => {
-    if (operation === 'add') {
-      addCoffeeItem(props, button)
-      setQuantity(quantity + 1)
-    } else {
-      removeCoffeeItem(props, button)
-      setQuantity(quantity - 1)
-    }
-  }
+  const { removeCoffeeItem } = useContext(CoffeeListContext)
 
   return (
     <ShopCardContainer>
       <InfoContainer>
-        <img src="/assets/coffees/traditional-espresso.png" alt="" />
+        <img src={props.img_source} alt="" />
         <ShopCardText>
           <TextContainer>
             <p>{props.title}</p>
@@ -47,11 +26,16 @@ export function ShopCard(props: CoffeeCardProps) {
           </TextContainer>
           <ButtonsContainer>
             <QuantityButton
-              onClick={handleSetCoffeeItem}
-              quantity={props.quantity}
+              key={props.id}
               id={props.id}
+              title={props.title}
+              subtitle={props.subtitle}
+              tags={props.tags}
+              img_source={props.img_source}
+              price={props.price}
+              quantity={props.quantity}
             />
-            <RemoveButton>
+            <RemoveButton onClick={() => removeCoffeeItem(props)}>
               <Trash size={16} />
               <p>Remove</p>
             </RemoveButton>

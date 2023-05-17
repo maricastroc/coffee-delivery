@@ -1,65 +1,50 @@
 import { Minus, Plus } from 'phosphor-react'
-import { QuantityButtonContainer } from './styles'
-import { useContext, useState } from 'react'
-import { CoffeeAndButtonContext } from '../../contexts/CoffeeAndButtonContext'
-import { CoffeeCardProps } from '../../pages/Home/components/CoffeeCard'
+import { ButtonContainer, QuantityButtonContainer } from './styles'
+import { useContext, useState, useEffect } from 'react'
+import { CoffeeListContext } from '../../contexts/CoffeeListContext'
 
 export interface QuantityButtonProps {
   id: number
-  quantity: number
-  onClick?: (operation: string, value: number) => void
+  title: string
+  subtitle: string
+  tags: string[]
+  img_source: string
+  price: string
+  quantity?: number
 }
 
 export function QuantityButton(props: QuantityButtonProps) {
-  const { buttonsList, setButtonsList } = useContext(CoffeeAndButtonContext)
+  const { increaseCoffeeQuantity, decreaseCoffeeQuantity } =
+    useContext(CoffeeListContext)
+  const [quantity, setQuantity] = useState(props.quantity || 0)
 
-  const addCoffeeItem = (value: number) => {
-    const existingItem = itemsList.find(
-      (item: CoffeeCardProps) => item.id === props.id,
-    )
+  useEffect(() => {
+    setQuantity(props.quantity || 0)
+  }, [props.quantity])
 
-    if (existingItem && existingItem.quantity > 1) {
-      const updatedItem = {
-        ...existingItem,
-        quantity: value,
-      }
+  const handleAddClick = () => {
+    const newQuantity = quantity + 1
+    setQuantity(newQuantity)
+    increaseCoffeeQuantity({ ...props, quantity: newQuantity })
+  }
 
-      const updatedList = itemsList.map((item: CoffeeCardProps) => {
-        return item.id === props.id ? updatedItem : item
-      })
-
-      setItemsList(updatedList)
-    } else {
-      const coffeeListWithoutRemovedOne = itemsList.filter(
-        (item: CoffeeCardProps) => {
-          return item.id !== props.id
-        },
-      )
-      setItemsList(coffeeListWithoutRemovedOne)
+  const handleRemoveClick = () => {
+    if (quantity > 0) {
+      const newQuantity = quantity - 1
+      setQuantity(newQuantity)
+      decreaseCoffeeQuantity({ ...props, quantity: newQuantity })
     }
   }
 
   return (
     <QuantityButtonContainer>
-      <Minus
-        size={16}
-        onClick={() => {
-          if (quantity > 1) {
-            const updatedQuantity = quantity - 1
-            setQuantity(updatedQuantity)
-            props.onClick('remove', updatedQuantity)
-          }
-        }}
-      />
-      <p>{props.quantity}</p>
-      <Plus
-        size={16}
-        onClick={() => {
-          const updatedQuantity = quantity + 1
-          setQuantity(updatedQuantity)
-          props.onClick('add', updatedQuantity)
-        }}
-      />
+      <ButtonContainer disabled={quantity === 0}>
+        <Minus size={16} onClick={handleRemoveClick} />
+      </ButtonContainer>
+      <p>{quantity}</p>
+      <ButtonContainer>
+        <Plus size={16} onClick={handleAddClick} />
+      </ButtonContainer>
     </QuantityButtonContainer>
   )
 }

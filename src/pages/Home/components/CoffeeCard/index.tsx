@@ -1,5 +1,4 @@
 import { NavLink } from 'react-router-dom'
-import { useContext, useEffect, useState } from 'react'
 import {
   CoffeeCardContainer,
   ShopButton,
@@ -7,7 +6,8 @@ import {
   FeaturesCardContainer,
 } from './styles'
 import { QuantityButton } from '../../../../components/QuantityButton'
-import { CoffeeAndButtonContext } from '../../../../contexts/CoffeeAndButtonContext'
+import { useContext, useEffect, useState } from 'react'
+import { CoffeeListContext } from '../../../../contexts/CoffeeListContext'
 
 export interface CoffeeCardProps {
   id: number
@@ -20,28 +20,16 @@ export interface CoffeeCardProps {
 }
 
 export function CoffeeCard(props: CoffeeCardProps) {
-  const [quantity, setQuantity] = useState(props.quantity)
-
-  const button = {
-    id: props.id,
-    quantity,
-  }
+  const [updatedQuantity, setUpdatedQuantity] = useState(props.quantity)
+  const { itemsList } = useContext(CoffeeListContext)
 
   useEffect(() => {
-    console.log(quantity)
-  }, [quantity])
-
-  const { addCoffeeItem, removeCoffeeItem } = useContext(CoffeeAndButtonContext)
-
-  const handleSetCoffeeItem = (operation: string) => {
-    if (operation === 'add') {
-      addCoffeeItem(props, button)
-      setQuantity(quantity + 1)
-    } else {
-      removeCoffeeItem(props, button)
-      setQuantity(quantity - 1)
+    const existingCoffeeItem = itemsList.find((item) => item.id === props.id)
+    const existingQuantity = existingCoffeeItem?.quantity || 0
+    if (existingQuantity !== props.quantity) {
+      setUpdatedQuantity(existingQuantity)
     }
-  }
+  }, [itemsList, props.id, props.quantity])
 
   return (
     <CoffeeCardContainer>
@@ -60,9 +48,18 @@ export function CoffeeCard(props: CoffeeCardProps) {
         </span>
         <div>
           <QuantityButton
+            key={props.id}
             id={props.id}
-            quantity={quantity}
-            onClick={handleSetCoffeeItem}
+            title={props.title}
+            subtitle={props.subtitle}
+            tags={props.tags}
+            img_source={props.img_source}
+            price={props.price}
+            quantity={
+              updatedQuantity === props.quantity
+                ? props.quantity
+                : updatedQuantity
+            }
           />
           <NavLink to="/checkout" title="Checkout">
             <ShopButton>
