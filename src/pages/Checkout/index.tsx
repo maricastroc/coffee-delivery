@@ -1,17 +1,17 @@
-import { Address } from './components/Address'
-import { Payment } from './components/Payment'
-import { ShopInfo } from './components/ShopInfo'
-import { CheckoutContainer, CheckoutInfoContainer } from './styles'
+import { AddressForm } from './components/AddressForm'
+import { PaymentForm } from './components/PaymentForm'
+import { ShopInformation } from './components/ShopInformation'
+import { CheckoutContainer, CheckoutInfoContainer, Heading } from './styles'
 
 export function Checkout() {
   return (
     <CheckoutContainer>
       <CheckoutInfoContainer>
-        <h2>Complete your order</h2>
-        <Address />
-        <Payment />
+        <Heading>Complete your order</Heading>
+        <AddressForm />
+        <PaymentForm />
       </CheckoutInfoContainer>
-      <ShopInfo />
+      <ShopInformation />
     </CheckoutContainer>
   )
 }

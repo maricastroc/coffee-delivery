@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { CoffeeCardProps } from '../pages/Home/components/CoffeeCard'
+import { CoffeeCardProps } from '../pages/Home/components/OurCoffees/components/CoffeeCard'
 
 export enum ActionTypes {
   ADD_COFFEE = 'ADD_COFFEE',

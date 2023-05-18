@@ -1,56 +1,53 @@
 import { useContext } from 'react'
 import { CoffeeListContext } from '../../../../contexts/CoffeeListContext'
-import { ShopCard } from './components/ShopCard'
+
 import {
   ConfirmButton,
+  ConfirmButtonLabel,
+  Heading,
+  Separator,
   ShopCardsContainer,
   ShopInfoBox,
   ShopInfoContainer,
   ShopInfoTextContainer,
+  TextContainer,
 } from './styles'
-import { CoffeeCardProps } from '../../../Home/components/CoffeeCard'
 
-export function ShopInfo() {
+import { ShopCard } from './components/ShopCard'
+import { CoffeeCardProps } from '../../../Home/components/OurCoffees/components/CoffeeCard'
+
+export function ShopInformation() {
   const { itemsList } = useContext(CoffeeListContext)
   return (
     <ShopInfoContainer>
-      <h2>Selected coffees</h2>
+      <Heading>Selected coffees</Heading>
       <ShopInfoBox>
         <ShopCardsContainer>
           {itemsList.map((item: CoffeeCardProps) => {
             return (
               <>
-                <ShopCard
-                  key={item.id}
-                  id={item.id}
-                  title={item.title}
-                  subtitle={item.subtitle}
-                  tags={item.tags}
-                  img_source={item.img_source}
-                  price={item.price}
-                  quantity={item.quantity}
-                />
-                <span></span>
+                <ShopCard key={item.id} {...item} />
+                <Separator></Separator>
               </>
             )
           })}
         </ShopCardsContainer>
         <ShopInfoTextContainer>
-          <div>
+          <TextContainer>
             <p>Total itens</p>
             <span>$ 29.70</span>
-          </div>
-          <div>
+          </TextContainer>
+          <TextContainer>
             <p>Delivery</p>
             <span>$ 3.50</span>
-          </div>
-          <div>
+          </TextContainer>
+          <TextContainer>
             <strong>Total</strong>
             <strong>$ 33.20</strong>
-          </div>
+          </TextContainer>
         </ShopInfoTextContainer>
         <ConfirmButton>
-          <p>Confirm delivery</p>
+          <ConfirmButtonLabel>Confirm delivery</ConfirmButtonLabel>
         </ConfirmButton>
       </ShopInfoBox>
     </ShopInfoContainer>

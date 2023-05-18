@@ -8,10 +8,6 @@ export const QuantityButtonContainer = styled.span`
   border-radius: 8px;
   padding: 0.45rem;
 
-  > p {
-    color: ${(props) => props.theme['base-title']};
-  }
-
   > svg {
     cursor: pointer;
     color: ${(props) => props.theme['purple-medium']};
@@ -20,6 +16,10 @@ export const QuantityButtonContainer = styled.span`
       color: ${(props) => props.theme['purple-dark']};
     }
   }
+`
+
+export const QuantityLabel = styled.p`
+  color: ${(props) => props.theme['base-title']};
 `
 
 export const ButtonContainer = styled.button`

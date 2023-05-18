@@ -3,16 +3,23 @@ import {
   AddressInfoContent,
   AddressText,
   ComplementContainer,
+  Heading,
+  IconContainer,
+  Input,
   InputContainer,
+  Paragraph,
+  Span,
   TextContainer,
 } from './styles'
+
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useDebounce } from '../../../../utils/useDebounce'
-import { MapPinLine } from 'phosphor-react'
 import axios from 'axios'
 
-export function Address() {
+import { MapPinLine } from 'phosphor-react'
+
+export function AddressForm() {
   const { register, watch, setValue } = useForm()
 
   const cep = useDebounce(watch('cep'), 500)
@@ -30,7 +37,7 @@ export function Address() {
 
         setValue('street', data.logradouro)
         setValue('neighborhood', data.bairro)
-        setValue('cidade', data.localidade)
+        setValue('city', data.localidade)
         setValue('uf', data.uf)
       }
     }
@@ -41,14 +48,18 @@ export function Address() {
   return (
     <AddressContainer>
       <AddressText>
-        <MapPinLine size={22} />
+        <IconContainer>
+          <MapPinLine size={22} />
+        </IconContainer>
         <TextContainer>
-          <h2>Delivery Address</h2>
-          <p>Enter the address where you would like to receive your order</p>
+          <Heading>Delivery Address</Heading>
+          <Paragraph>
+            Enter the address where you would like to receive your order
+          </Paragraph>
         </TextContainer>
       </AddressText>
       <AddressInfoContent>
-        <input
+        <Input
           type="text"
           id="cep"
           placeholder="CEP"
@@ -57,7 +68,7 @@ export function Address() {
           {...register('cep')}
           required
         />
-        <input
+        <Input
           type="text"
           id="street"
           placeholder="Street"
@@ -65,7 +76,7 @@ export function Address() {
           required
         />
         <InputContainer>
-          <input
+          <Input
             type="number"
             id="number"
             placeholder="Number"
@@ -73,31 +84,31 @@ export function Address() {
             required
           />
           <ComplementContainer>
-            <input
+            <Input
               type="text"
               id="complement"
               placeholder="Complement"
               {...register('complement')}
             />
-            <span>Optional</span>
+            <Span>Optional</Span>
           </ComplementContainer>
         </InputContainer>
         <InputContainer>
-          <input
+          <Input
             type="text"
             id="neighborhood"
             placeholder="Neighborhood"
             {...register('neighborhood')}
             required
           />
-          <input
+          <Input
             type="text"
             id="city"
             placeholder="City"
             {...register('city')}
             required
           />
-          <input
+          <Input
             type="text"
             id="uf"
             placeholder="UF"

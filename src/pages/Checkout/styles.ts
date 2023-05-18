@@ -18,13 +18,12 @@ export const CheckoutInfoContainer = styled.div`
   flex-direction: column;
   gap: 1.5rem;
 
-  > h2 {
-    color: ${(props) => props.theme['base-subtitle']};
-    font-size: 1.125rem;
-    margin-bottom: 0.975rem;
-  }
-
   @media (min-width: 1440px) {
     gap: 0.75rem;
   }
+`
+export const Heading = styled.h2`
+  color: ${(props) => props.theme['base-subtitle']};
+  font-size: 1.125rem;
+  margin-bottom: 0.975rem;
 `

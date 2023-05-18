@@ -10,25 +10,25 @@ export const CoffeeCardContainer = styled.div`
   justify-content: center;
   text-align: center;
   margin-bottom: 1.5rem;
+`
 
-  > img {
-    margin-top: -3rem;
-    width: 7.5rem;
-    height: auto;
-  }
+export const CoffeeImage = styled.img`
+  margin-top: -3rem;
+  width: 7.5rem;
+  height: auto;
+`
 
-  > h2 {
-    font-family: 'Baloo 2', cursive;
-    font-weight: 800;
-    font-size: 1.25rem;
-    color: ${(props) => props.theme['base-subtitle']};
-  }
+export const Heading = styled.h2`
+  font-family: 'Baloo 2', cursive;
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: ${(props) => props.theme['base-subtitle']};
+`
 
-  > p {
-    margin-top: 0.3rem;
-    font-size: 0.875rem;
-    color: ${(props) => props.theme['base-label']};
-  }
+export const Description = styled.p`
+  margin-top: 0.3rem;
+  font-size: 0.875rem;
+  color: ${(props) => props.theme['base-label']};
 `
 
 export const FeaturesCardContainer = styled.div`
@@ -36,29 +36,29 @@ export const FeaturesCardContainer = styled.div`
   justify-content: space-between;
   margin-top: 2.05rem;
   width: 100%;
+`
 
-  > span {
-    display: flex;
-    gap: 0.1rem;
-    align-items: center;
-    color: ${(props) => props.theme['base-text']};
+export const Options = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+`
 
-    p {
-      font-size: 0.9rem;
-    }
+export const PriceContainer = styled.span`
+  display: flex;
+  gap: 0.1rem;
+  align-items: center;
+  color: ${(props) => props.theme['base-text']};
+`
 
-    strong {
-      font-family: 'Baloo 2', cursive;
-      font-weight: 800;
-      font-size: 1.5rem;
-    }
-  }
+export const DollarSign = styled.p`
+  font-size: 0.9rem;
+`
 
-  > div {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
+export const Price = styled.strong`
+  font-family: 'Baloo 2', cursive;
+  font-weight: 800;
+  font-size: 1.5rem;
 `
 
 export const TagsContainer = styled.div`
@@ -87,11 +87,6 @@ export const ShopButton = styled.button`
   padding: 0.4rem;
   transition: background-color 300ms;
 
-  img {
-    width: 1.365rem;
-    height: 1.365rem;
-  }
-
   &:hover {
     background-color: ${(props) => props.theme['purple-medium']};
   }
@@ -99,4 +94,9 @@ export const ShopButton = styled.button`
   &:focus {
     box-shadow: none;
   }
+`
+
+export const ShopButtonImage = styled.img`
+  width: 1.365rem;
+  height: 1.365rem;
 `

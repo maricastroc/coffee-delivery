@@ -1,4 +1,4 @@
-import { CoffeeCardProps } from '../pages/Home/components/CoffeeCard'
+import { CoffeeCardProps } from '../pages/Home/components/OurCoffees/components/CoffeeCard'
 
 export enum ActionTypes {
   // eslint-disable-next-line no-unused-vars

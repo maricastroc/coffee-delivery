@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useReducer } from 'react'
 import { ActionTypes, coffeeListReducer } from '../reducers/reducer'
-import { CoffeeCardProps } from '../pages/Home/components/CoffeeCard'
+import { CoffeeCardProps } from '../pages/Home/components/OurCoffees/components/CoffeeCard'
 
 interface CoffeeListContextData {
   itemsList: CoffeeCardProps[]

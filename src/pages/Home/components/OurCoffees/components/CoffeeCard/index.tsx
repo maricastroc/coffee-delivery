@@ -1,13 +1,23 @@
 import { NavLink } from 'react-router-dom'
+import { useContext, useEffect, useState } from 'react'
+
 import {
   CoffeeCardContainer,
+  CoffeeImage,
+  Description,
+  Heading,
+  FeaturesCardContainer,
   ShopButton,
   TagsContainer,
-  FeaturesCardContainer,
+  Price,
+  PriceContainer,
+  DollarSign,
+  ShopButtonImage,
+  Options,
 } from './styles'
-import { QuantityButton } from '../../../../components/QuantityButton'
-import { useContext, useEffect, useState } from 'react'
-import { CoffeeListContext } from '../../../../contexts/CoffeeListContext'
+
+import { QuantityButton } from '../../../../../../components/QuantityButton'
+import { CoffeeListContext } from '../../../../../../contexts/CoffeeListContext'
 
 export interface CoffeeCardProps {
   id: number
@@ -20,53 +30,47 @@ export interface CoffeeCardProps {
 }
 
 export function CoffeeCard(props: CoffeeCardProps) {
-  const [updatedQuantity, setUpdatedQuantity] = useState(props.quantity)
+  const [displayedQuantity, setDisplayedQuantity] = useState(props.quantity)
   const { itemsList } = useContext(CoffeeListContext)
 
   useEffect(() => {
     const existingCoffeeItem = itemsList.find((item) => item.id === props.id)
     const existingQuantity = existingCoffeeItem?.quantity || 0
     if (existingQuantity !== props.quantity) {
-      setUpdatedQuantity(existingQuantity)
+      setDisplayedQuantity(existingQuantity)
     }
   }, [itemsList, props.id, props.quantity])
 
   return (
     <CoffeeCardContainer>
-      <img src={props.img_source} alt="" />
+      <CoffeeImage src={props.img_source} alt="" />
       <TagsContainer>
         {props.tags.map((item) => {
           return <span key={item}>{item}</span>
         })}
       </TagsContainer>
-      <h2>{props.title}</h2>
-      <p>{props.subtitle}</p>
+      <Heading>{props.title}</Heading>
+      <Description>{props.subtitle}</Description>
       <FeaturesCardContainer>
-        <span>
-          <p>$</p>
-          <strong>{props.price}</strong>
-        </span>
-        <div>
+        <PriceContainer>
+          <DollarSign>$</DollarSign>
+          <Price>{props.price}</Price>
+        </PriceContainer>
+        <Options>
           <QuantityButton
-            key={props.id}
-            id={props.id}
-            title={props.title}
-            subtitle={props.subtitle}
-            tags={props.tags}
-            img_source={props.img_source}
-            price={props.price}
+            {...props}
             quantity={
-              updatedQuantity === props.quantity
+              displayedQuantity === props.quantity
                 ? props.quantity
-                : updatedQuantity
+                : displayedQuantity
             }
           />
           <NavLink to="/checkout" title="Checkout">
             <ShopButton>
-              <img src="/assets/icons/icon-shop-small.svg" alt="" />
+              <ShopButtonImage src="/assets/icons/icon-shop-small.svg" alt="" />
             </ShopButton>
           </NavLink>
-        </div>
+        </Options>
       </FeaturesCardContainer>
     </CoffeeCardContainer>
   )
