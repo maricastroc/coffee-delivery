@@ -1,9 +1,19 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
+
+const fadeOutLeft = keyframes`
+  0% {  opacity: 1; transform: translateX(0); }
+  100% { opacity: 0.2; transform: translateX(-50px); }
+`
 
 export const ShopCardContainer = styled.div`
   display: flex;
   align-items: center;
   background-color: ${(props) => props.theme['base-card']};
+  transition: 300ms;
+
+  &.remove-coffee {
+    animation: ${fadeOutLeft} 1s linear forwards;
+  }
 `
 
 export const InfoContainer = styled.div`
