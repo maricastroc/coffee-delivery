@@ -1,16 +1,23 @@
-import { QuantityButton } from '../../../../../../components/QuantityButton'
-import { Trash } from 'phosphor-react'
+import { useContext } from 'react'
+import { CoffeeListContext } from '../../../../../../contexts/CoffeeListContext'
+
 import {
   ButtonsContainer,
+  CardImage,
+  CardLabel,
+  CardPrice,
   InfoContainer,
   RemoveButton,
+  RemoveLabel,
   ShopCardContainer,
   ShopCardText,
   TextContainer,
 } from './styles'
-import { CoffeeCardProps } from '../../../../../Home/components/CoffeeCard'
-import { CoffeeListContext } from '../../../../../../contexts/CoffeeListContext'
-import { useContext } from 'react'
+
+import { QuantityButton } from '../../../../../../components/QuantityButton'
+import { CoffeeCardProps } from '../../../../../Home/components/OurCoffees/components/CoffeeCard'
+
+import { Trash } from 'phosphor-react'
 
 export function ShopCard(props: CoffeeCardProps) {
   const { removeCoffeeItem } = useContext(CoffeeListContext)
@@ -18,11 +25,11 @@ export function ShopCard(props: CoffeeCardProps) {
   return (
     <ShopCardContainer>
       <InfoContainer>
-        <img src={props.img_source} alt="" />
+        <CardImage src={props.img_source} alt="" />
         <ShopCardText>
           <TextContainer>
-            <p>{props.title}</p>
-            <strong>$ {props.price}</strong>
+            <CardLabel>{props.title}</CardLabel>
+            <CardPrice>$ {props.price}</CardPrice>
           </TextContainer>
           <ButtonsContainer>
             <QuantityButton
@@ -37,7 +44,7 @@ export function ShopCard(props: CoffeeCardProps) {
             />
             <RemoveButton onClick={() => removeCoffeeItem(props)}>
               <Trash size={16} />
-              <p>Remove</p>
+              <RemoveLabel>Remove</RemoveLabel>
             </RemoveButton>
           </ButtonsContainer>
         </ShopCardText>

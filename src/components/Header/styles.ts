@@ -13,38 +13,38 @@ export const HeaderContainer = styled.header`
     }
   }
 
-  img {
-    width: 4rem;
-  }
-
   @media (min-width: 680px) {
     padding: 2.5rem 3rem;
     width: 100%;
-
-    img {
-      width: 5.3rem;
-      height: auto;
-    }
   }
 
   @media (min-width: 980px) {
     padding: 2.5rem 5rem;
     width: 100%;
-
-    img {
-      width: 5.3rem;
-      height: auto;
-    }
   }
 
   @media (min-width: 1440px) {
     padding: 2.5rem 12rem;
     width: 100%;
+  }
+`
 
-    img {
-      width: 5.3rem;
-      height: auto;
-    }
+export const HomeIcon = styled.img`
+  width: 4rem;
+
+  @media (min-width: 680px) {
+    width: 5.3rem;
+    height: auto;
+  }
+
+  @media (min-width: 980px) {
+    width: 5.3rem;
+    height: auto;
+  }
+
+  @media (min-width: 1440px) {
+    width: 5.3rem;
+    height: auto;
   }
 `
 
@@ -53,7 +53,7 @@ export const FeaturesContainer = styled.div`
   gap: 0.75rem;
 `
 
-export const InfoLocation = styled.div`
+export const LocationContainer = styled.div`
   cursor: default;
   display: flex;
   align-items: center;
@@ -64,17 +64,17 @@ export const InfoLocation = styled.div`
   color: ${(props) => props.theme['purple-dark']};
   background-color: ${(props) => props.theme['purple-light']};
 
-  img {
-    width: 1.2rem;
-  }
-
   @media (min-width: 1440px) {
     padding: 0.625rem;
     font-size: 0.875rem;
+  }
+`
 
-    img {
-      width: 1.4rem;
-    }
+export const LocationIcon = styled.img`
+  width: 1.2rem;
+
+  @media (min-width: 1440px) {
+    width: 1.4rem;
   }
 `
 
@@ -87,16 +87,16 @@ export const ButtonShop = styled.button`
   border: none;
   border-radius: 8px;
 
-  img {
-    width: 1.2rem;
-  }
-
   @media (min-width: 1440px) {
     padding: 0.625rem;
     font-size: 0.875rem;
+  }
+`
 
-    img {
-      width: 1.4rem;
-    }
+export const ButtonShopIcon = styled.img`
+  width: 1.2rem;
+
+  @media (min-width: 1440px) {
+    width: 1.4rem;
   }
 `

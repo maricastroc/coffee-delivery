@@ -4,12 +4,12 @@ export const ShopInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+`
 
-  h2 {
-    color: ${(props) => props.theme['base-subtitle']};
-    font-size: 1.125rem;
-    margin-bottom: 0.975rem;
-  }
+export const Heading = styled.h2`
+  color: ${(props) => props.theme['base-subtitle']};
+  font-size: 1.125rem;
+  margin-bottom: 0.975rem;
 `
 
 export const ShopInfoBox = styled.div`
@@ -27,12 +27,12 @@ export const ShopCardsContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+`
 
-  > span {
-    width: 100%;
-    height: 0.02rem;
-    background-color: ${(props) => props.theme['base-button']};
-  }
+export const Separator = styled.span`
+  width: 100%;
+  height: 0.02rem;
+  background-color: ${(props) => props.theme['base-button']};
 `
 
 export const ShopInfoTextContainer = styled.div`
@@ -62,6 +62,12 @@ export const ShopInfoTextContainer = styled.div`
   }
 `
 
+export const TextContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  color: ${(props) => props.theme['base-text']};
+`
+
 export const ConfirmButton = styled.button`
   margin-top: 1.5rem;
   cursor: pointer;
@@ -73,16 +79,16 @@ export const ConfirmButton = styled.button`
   border-radius: 8px;
   transition: 300ms;
 
-  p {
-    width: 100%;
-    text-align: center;
-    color: ${(props) => props.theme['base-white']};
-    font-size: 0.875rem;
-    text-transform: uppercase;
-    font-weight: 700;
-  }
-
   &:hover {
     background-color: ${(props) => props.theme['yellow-dark']};
   }
+`
+
+export const ConfirmButtonLabel = styled.p`
+  width: 100%;
+  text-align: center;
+  color: ${(props) => props.theme['base-white']};
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  font-weight: 700;
 `

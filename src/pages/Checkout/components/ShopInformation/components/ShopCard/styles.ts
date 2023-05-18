@@ -11,11 +11,11 @@ export const InfoContainer = styled.div`
   gap: 1.25rem;
   align-items: flex-start;
   width: 100%;
+`
 
-  img {
-    width: 4rem;
-    height: auto;
-  }
+export const CardImage = styled.img`
+  width: 4rem;
+  height: auto;
 `
 
 export const ShopCardText = styled.div`
@@ -30,23 +30,23 @@ export const TextContainer = styled.div`
   justify-content: space-between;
   gap: 0.5rem;
 
-  > p {
-    width: 60%;
-    color: ${(props) => props.theme['base-subtitle']};
-  }
-
-  > strong {
-    font-weight: 700;
-    color: ${(props) => props.theme['base-text']};
-  }
-
   @media (min-width: 1440px) {
     display: flex;
-
-    > p {
-      width: auto;
-    }
   }
+`
+
+export const CardLabel = styled.p`
+  width: 60%;
+  color: ${(props) => props.theme['base-subtitle']};
+
+  @media (min-width: 1440px) {
+    width: auto;
+  }
+`
+
+export const CardPrice = styled.strong`
+  font-weight: 700;
+  color: ${(props) => props.theme['base-text']};
 `
 
 export const ButtonsContainer = styled.div`
@@ -70,12 +70,6 @@ export const RemoveButton = styled.div`
     color: ${(props) => props.theme['purple-medium']};
   }
 
-  p {
-    color: ${(props) => props.theme['base-text']};
-    font-size: 0.75rem;
-    text-transform: uppercase;
-  }
-
   &:hover {
     background-color: ${(props) => props.theme['base-hover']};
 
@@ -83,4 +77,10 @@ export const RemoveButton = styled.div`
       color: ${(props) => props.theme['purple-dark']};
     }
   }
+`
+
+export const RemoveLabel = styled.p`
+  color: ${(props) => props.theme['base-text']};
+  font-size: 0.75rem;
+  text-transform: uppercase;
 `

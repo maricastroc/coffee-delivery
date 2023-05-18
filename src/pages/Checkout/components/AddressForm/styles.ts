@@ -17,7 +17,9 @@ export const AddressContainer = styled.div`
 export const AddressText = styled.div`
   display: flex;
   gap: 0.5rem;
+`
 
+export const IconContainer = styled.span`
   svg {
     color: ${(props) => props.theme['yellow-dark']};
     font-size: 30px;
@@ -28,24 +30,22 @@ export const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 80%;
+`
 
-  h2 {
-    font-size: 1rem;
-    font-weight: 400;
-    color: ${(props) => props.theme['base-subtitle']};
-  }
+export const Heading = styled.h2`
+  font-size: 1rem;
+  font-weight: 400;
+  color: ${(props) => props.theme['base-subtitle']};
+`
 
-  p {
-    margin-top: 0.3rem;
-    font-size: 0.8rem;
-    color: ${(props) => props.theme['base-text']};
-    text-shadow: 0 3px 4px rgba(0, 0, 0, 0.3);
-  }
+export const Paragraph = styled.p`
+  margin-top: 0.3rem;
+  font-size: 0.8rem;
+  color: ${(props) => props.theme['base-text']};
+  text-shadow: 0 3px 4px rgba(0, 0, 0, 0.3);
 
   @media (min-width: 1440px) {
-    p {
-      font-size: 0.875rem;
-    }
+    font-size: 0.875rem;
   }
 `
 
@@ -63,41 +63,42 @@ const inputStyles = css`
   border-radius: 8px;
 `
 
+export const Input = styled.input`
+  ${inputStyles}
+
+  &[name='complement'] {
+    padding-left: 0.75rem;
+    min-width: 100%;
+    border: none;
+  }
+
+  @media (min-width: 1440px) {
+    &[name='cep'],
+    &[name='number'],
+    &[name='neighborhood'],
+    &[name='number'] {
+      width: 33%;
+    }
+
+    &[name='complement'] {
+      width: 67%;
+    }
+
+    &[name='city'] {
+      width: 52%;
+    }
+
+    &[name='uf'] {
+      width: 15%;
+    }
+  }
+`
+
 export const AddressInfoContent = styled.div`
   margin-top: 2rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
-
-  input {
-    ${inputStyles}
-  }
-
-  @media (min-width: 1440px) {
-    input {
-      &[name='cep'],
-      &[name='number'],
-      &[name='neighborhood'] {
-        width: 33%;
-      }
-
-      &[name='complement'] {
-        width: 67%;
-      }
-
-      &[name='city'] {
-        width: 52%;
-      }
-
-      &[name='uf'] {
-        width: 15%;
-      }
-    }
-
-    input[name='number'] {
-      width: 33%;
-    }
-  }
 `
 
 export const InputContainer = styled.div`
@@ -120,28 +121,22 @@ export const ComplementContainer = styled.div`
   border-radius: 8px;
   width: 100%;
 
-  input {
-    padding-left: 0.75rem;
-    min-width: 100%;
-    border: none;
-  }
-
-  span {
-    position: absolute;
-    top: 35%;
-    left: 73%;
-    align-self: flex-end;
-    font-size: 0.75rem;
-    font-style: italic;
-    line-height: 130%;
-    color: ${(props) => props.theme['base-text']};
-  }
-
   @media (min-width: 1440px) {
     width: 67%;
+  }
+`
 
-    span {
-      left: 83%;
-    }
+export const Span = styled.span`
+  position: absolute;
+  top: 35%;
+  left: 73%;
+  align-self: flex-end;
+  font-size: 0.75rem;
+  font-style: italic;
+  line-height: 130%;
+  color: ${(props) => props.theme['base-text']};
+
+  @media (min-width: 1440px) {
+    left: 83%;
   }
 `

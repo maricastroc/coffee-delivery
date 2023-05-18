@@ -1,7 +1,13 @@
-import { Minus, Plus } from 'phosphor-react'
-import { ButtonContainer, QuantityButtonContainer } from './styles'
 import { useContext, useState, useEffect } from 'react'
 import { CoffeeListContext } from '../../contexts/CoffeeListContext'
+
+import {
+  ButtonContainer,
+  QuantityButtonContainer,
+  QuantityLabel,
+} from './styles'
+
+import { Minus, Plus } from 'phosphor-react'
 
 export interface QuantityButtonProps {
   id: number
@@ -41,7 +47,7 @@ export function QuantityButton(props: QuantityButtonProps) {
       <ButtonContainer disabled={quantity === 0}>
         <Minus size={16} onClick={handleRemoveClick} />
       </ButtonContainer>
-      <p>{quantity}</p>
+      <QuantityLabel>{quantity}</QuantityLabel>
       <ButtonContainer>
         <Plus size={16} onClick={handleAddClick} />
       </ButtonContainer>

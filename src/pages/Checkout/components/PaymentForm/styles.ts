@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const PaymentContainer = styled.div`
+export const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 90vw;
@@ -13,7 +13,7 @@ export const PaymentContainer = styled.div`
   }
 `
 
-export const PaymentText = styled.div`
+export const TextSection = styled.div`
   display: flex;
   gap: 0.5rem;
 
@@ -21,32 +21,30 @@ export const PaymentText = styled.div`
     color: ${(props) => props.theme['purple-dark']};
   }
 `
-export const PaymentTextContainer = styled.div`
+export const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 80%;
+`
 
-  h2 {
-    font-size: 1rem;
-    font-weight: 400;
-    color: ${(props) => props.theme['base-subtitle']};
-  }
+export const Heading = styled.h2`
+  font-size: 1rem;
+  font-weight: 400;
+  color: ${(props) => props.theme['base-subtitle']};
+`
 
-  p {
-    margin-top: 0.3rem;
-    font-size: 0.8rem;
-    color: ${(props) => props.theme['base-text']};
-    text-shadow: 0 3px 4px rgba(0, 0, 0, 0.3);
-  }
+export const Paragraph = styled.p`
+  margin-top: 0.3rem;
+  font-size: 0.8rem;
+  color: ${(props) => props.theme['base-text']};
+  text-shadow: 0 3px 4px rgba(0, 0, 0, 0.3);
 
   @media (min-width: 1440px) {
-    p {
-      font-size: 0.875rem;
-    }
+    font-size: 0.875rem;
   }
 `
 
-export const PaymentOptionsContainer = styled.div`
+export const OptionsSection = styled.div`
   margin-top: 2rem;
   display: flex;
   flex-direction: column;
@@ -62,7 +60,7 @@ export const PaymentOptionsContainer = styled.div`
   }
 `
 
-export const ButtonContainer = styled.button`
+export const Option = styled.button`
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -75,16 +73,6 @@ export const ButtonContainer = styled.button`
   width: 100%;
   transition: 300ms;
 
-  svg {
-    color: ${(props) => props.theme['purple-medium']};
-  }
-
-  p {
-    color: ${(props) => props.theme['base-subtitle']};
-    font-size: 0.75rem;
-    text-transform: uppercase;
-  }
-
   &:hover {
     background-color: ${(props) => props.theme['base-hover']};
   }
@@ -95,5 +83,17 @@ export const ButtonContainer = styled.button`
 
   @media (min-width: 1440px) {
     width: 33%;
+  }
+`
+
+export const OptionLabel = styled.p`
+  color: ${(props) => props.theme['base-subtitle']};
+  font-size: 0.75rem;
+  text-transform: uppercase;
+`
+
+export const IconContainer = styled.span`
+  svg {
+    color: ${(props) => props.theme['purple-medium']};
   }
 `
