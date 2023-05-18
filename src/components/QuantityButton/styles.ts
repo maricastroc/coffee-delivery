@@ -29,6 +29,10 @@ export const ButtonContainer = styled.button`
   border: none;
   background-color: transparent;
 
+  &:disabled {
+    cursor: not-allowed;
+  }
+
   > svg {
     color: ${(props) => props.theme['purple-medium']};
 

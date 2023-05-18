@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { CoffeeListContext } from '../../../../../../contexts/CoffeeListContext'
 
 import {
@@ -21,9 +21,21 @@ import { Trash } from 'phosphor-react'
 
 export function ShopCard(props: CoffeeCardProps) {
   const { removeCoffeeItem } = useContext(CoffeeListContext)
+  const [removeCoffe, setRemoveCoffe] = useState(false)
+
+  function handleRemoveCoffee() {
+    setRemoveCoffe(true)
+
+    const time = setTimeout(() => {
+      removeCoffeeItem(props)
+      setRemoveCoffe(false)
+    }, 1100)
+
+    return () => clearTimeout(time)
+  }
 
   return (
-    <ShopCardContainer>
+    <ShopCardContainer className={removeCoffe ? 'remove-coffee' : ''}>
       <InfoContainer>
         <CardImage src={props.img_source} alt="" />
         <ShopCardText>
@@ -42,7 +54,7 @@ export function ShopCard(props: CoffeeCardProps) {
               price={props.price}
               quantity={props.quantity}
             />
-            <RemoveButton onClick={() => removeCoffeeItem(props)}>
+            <RemoveButton onClick={() => handleRemoveCoffee()}>
               <Trash size={16} />
               <RemoveLabel>Remove</RemoveLabel>
             </RemoveButton>
