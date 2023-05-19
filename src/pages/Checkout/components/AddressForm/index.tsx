@@ -62,7 +62,7 @@ export function AddressForm() {
         <Input
           type="text"
           id="cep"
-          placeholder="CEP"
+          placeholder="ZIP Code"
           inputMode="numeric"
           pattern="^[0-9]*$"
           {...register('cep')}

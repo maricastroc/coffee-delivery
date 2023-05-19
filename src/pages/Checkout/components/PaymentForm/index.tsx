@@ -15,9 +15,9 @@ import {
 import { Bank, CreditCard, CurrencyDollar, Money } from 'phosphor-react'
 
 const paymentOptions = [
-  { type: 'credit', label: 'Credit Card', icon: <CreditCard size={16} /> },
-  { type: 'debit', label: 'Debit Card', icon: <Bank size={16} /> },
-  { type: 'money', label: 'Money', icon: <Money size={16} /> },
+  { type: 'credit', label: 'Credit Card', icon: <CreditCard size={22} /> },
+  { type: 'debit', label: 'Debit Card', icon: <Bank size={22} /> },
+  { type: 'money', label: 'Money', icon: <Money size={22} /> },
 ]
 
 export function PaymentForm() {

@@ -6,10 +6,14 @@ export const CheckoutContainer = styled.div`
   gap: 2rem;
   padding-bottom: 6rem;
   margin-top: 2.5rem;
+  width: clamp(10rem, 90vw, 50rem);
 
   @media (min-width: 1440px) {
     flex-direction: row;
     align-items: flex-start;
+    justify-content: center;
+    padding: 0 12rem 6rem;
+    width: 100%;
   }
 `
 
@@ -24,6 +28,10 @@ export const CheckoutInfoContainer = styled.div`
 `
 export const Heading = styled.h2`
   color: ${(props) => props.theme['base-subtitle']};
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   margin-bottom: 0.975rem;
+
+  @media (min-width: 1440px) {
+    font-size: 1.125rem;
+  }
 `
