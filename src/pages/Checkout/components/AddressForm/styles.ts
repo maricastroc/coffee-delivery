@@ -2,15 +2,16 @@ import styled, { css } from 'styled-components'
 
 export const AddressContainer = styled.div`
   display: flex;
+  margin: 0 auto;
   flex-direction: column;
-  width: 90vw;
+  width: clamp(10rem, 90vw, 50rem);
   padding: 1.5rem;
   border-radius: 12px;
   background-color: ${(props) => props.theme['base-card']};
 
   @media (min-width: 1440px) {
-    width: 40rem;
     padding: 2.5rem;
+    width: 100%;
   }
 `
 
@@ -33,16 +34,20 @@ export const TextContainer = styled.div`
 `
 
 export const Heading = styled.h2`
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 400;
   color: ${(props) => props.theme['base-subtitle']};
+
+  @media (min-width: 1440px) {
+    font-size: 1rem;
+  }
 `
 
 export const Paragraph = styled.p`
   margin-top: 0.3rem;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
+  line-height: 130%;
   color: ${(props) => props.theme['base-text']};
-  text-shadow: 0 3px 4px rgba(0, 0, 0, 0.3);
 
   @media (min-width: 1440px) {
     font-size: 0.875rem;

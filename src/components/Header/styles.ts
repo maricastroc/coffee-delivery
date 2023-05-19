@@ -3,24 +3,14 @@ import styled from 'styled-components'
 export const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
-  padding: 2.5rem 1rem;
-  width: clamp(10rem, 90vw, 45rem);
+  padding: 2.5rem 0;
+  width: clamp(10rem, 90vw, 50rem);
 
   a {
     &:focus {
       box-shadow: none;
       outline: none;
     }
-  }
-
-  @media (min-width: 680px) {
-    padding: 2.5rem 3rem;
-    width: 100%;
-  }
-
-  @media (min-width: 980px) {
-    padding: 2.5rem 5rem;
-    width: 100%;
   }
 
   @media (min-width: 1440px) {
@@ -50,6 +40,7 @@ export const HomeIcon = styled.img`
 
 export const FeaturesContainer = styled.div`
   display: flex;
+  align-items: center;
   gap: 0.75rem;
 `
 
@@ -80,6 +71,7 @@ export const LocationIcon = styled.img`
 
 export const ButtonShop = styled.button`
   cursor: pointer;
+  position: relative;
   display: flex;
   align-items: center;
   padding: 0.4rem;
@@ -90,6 +82,26 @@ export const ButtonShop = styled.button`
   @media (min-width: 1440px) {
     padding: 0.625rem;
     font-size: 0.875rem;
+  }
+`
+
+export const ButtonShopLabel = styled.span`
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 1.2rem;
+  height: 1.2rem;
+  z-index: 10;
+  top: -22%;
+  left: 75%;
+  border-radius: 50%;
+  color: ${(props) => props.theme['base-white']};
+  background-color: ${(props) => props.theme['yellow-dark']};
+
+  p {
+    font-size: 0.75rem;
   }
 `
 

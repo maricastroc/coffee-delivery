@@ -3,13 +3,13 @@ import styled from 'styled-components'
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  width: 90vw;
+  width: clamp(10rem, 90vw, 50rem);
   padding: 1.5rem;
   background-color: ${(props) => props.theme['base-card']};
 
   @media (min-width: 1440px) {
     padding: 2.5rem;
-    width: 40rem;
+    width: 100%;
   }
 `
 
@@ -28,16 +28,20 @@ export const TextContainer = styled.div`
 `
 
 export const Heading = styled.h2`
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 400;
   color: ${(props) => props.theme['base-subtitle']};
+
+  @media (min-width: 1440px) {
+    font-size: 1rem;
+  }
 `
 
 export const Paragraph = styled.p`
   margin-top: 0.3rem;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
+  line-height: 130%;
   color: ${(props) => props.theme['base-text']};
-  text-shadow: 0 3px 4px rgba(0, 0, 0, 0.3);
 
   @media (min-width: 1440px) {
     font-size: 0.875rem;
@@ -55,6 +59,10 @@ export const OptionsSection = styled.div`
     border-color: ${(props) => props.theme['purple-dark']};
   }
 
+  @media (min-width: 650px) {
+    flex-direction: row;
+  }
+
   @media (min-width: 1440px) {
     flex-direction: row;
   }
@@ -65,12 +73,11 @@ export const Option = styled.button`
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  padding: 1rem;
+  padding: 0.8rem;
   background-color: ${(props) => props.theme['base-button']};
   color: ${(props) => props.theme['base-text']};
   border: solid 2px transparent;
   border-radius: 8px;
-  width: 100%;
   transition: 300ms;
 
   &:hover {
@@ -88,12 +95,13 @@ export const Option = styled.button`
 
 export const OptionLabel = styled.p`
   color: ${(props) => props.theme['base-subtitle']};
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   text-transform: uppercase;
 `
 
 export const IconContainer = styled.span`
   svg {
+    margin-top: 0.2rem;
     color: ${(props) => props.theme['purple-medium']};
   }
 `

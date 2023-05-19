@@ -8,14 +8,24 @@ export const ShopInfoContainer = styled.div`
 
 export const Heading = styled.h2`
   color: ${(props) => props.theme['base-subtitle']};
-  font-size: 1.125rem;
+  font-size: 1.25rem;
+  margin-top: 1.5rem;
   margin-bottom: 0.975rem;
+
+  @media (min-width: 1440px) {
+    font-size: 1.125rem;
+    margin-top: 0;
+  }
 `
 
 export const ShopInfoBox = styled.div`
-  width: 90vw;
+  width: clamp(10rem, 90vw, 50rem);
   padding: 1rem;
   background-color: ${(props) => props.theme['base-card']};
+
+  @media (min-width: 480px) {
+    padding: 2.5rem;
+  }
 
   @media (min-width: 1440px) {
     padding: 2.5rem;
@@ -47,17 +57,35 @@ export const ShopInfoTextContainer = styled.div`
     color: ${(props) => props.theme['base-text']};
 
     > p {
-      font-size: 0.875rem;
+      font-size: 1rem;
     }
 
     > span {
-      font-size: 0.875rem;
+      font-size: 1rem;
     }
 
     > strong {
       color: ${(props) => props.theme['base-subtitle']};
       font-size: 1.25rem;
       font-weight: 700;
+    }
+  }
+
+  @media (min-width: 1440px) {
+    div {
+      > p {
+        font-size: 0.875rem;
+      }
+
+      > span {
+        font-size: 0.875rem;
+      }
+
+      > strong {
+        color: ${(props) => props.theme['base-subtitle']};
+        font-size: 1.25rem;
+        font-weight: 700;
+      }
     }
   }
 `
@@ -73,7 +101,7 @@ export const ConfirmButton = styled.button`
   cursor: pointer;
   display: flex;
   background-color: ${(props) => props.theme['yellow-medium']};
-  padding: 0.875rem;
+  padding: 1rem;
   width: 100%;
   border: none;
   border-radius: 8px;
@@ -88,7 +116,7 @@ export const ConfirmButtonLabel = styled.p`
   width: 100%;
   text-align: center;
   color: ${(props) => props.theme['base-white']};
-  font-size: 0.875rem;
+  font-size: 1rem;
   text-transform: uppercase;
   font-weight: 700;
 `

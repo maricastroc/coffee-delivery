@@ -32,15 +32,27 @@ export const ShopCardText = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
-  width: 100%;
+
+  @media (min-width: 480px) {
+    width: 18rem;
+  }
+
+  @media (min-width: 1440px) {
+    width: 100%;
+  }
 `
 
 export const TextContainer = styled.div`
   display: flex;
-  justify-content: space-between;
   gap: 0.5rem;
 
+  @media (min-width: 480px) {
+    justify-content: space-between;
+    display: flex;
+  }
+
   @media (min-width: 1440px) {
+    justify-content: space-between;
     display: flex;
   }
 `
@@ -48,6 +60,10 @@ export const TextContainer = styled.div`
 export const CardLabel = styled.p`
   width: 60%;
   color: ${(props) => props.theme['base-subtitle']};
+
+  @media (min-width: 480px) {
+    width: auto;
+  }
 
   @media (min-width: 1440px) {
     width: auto;
