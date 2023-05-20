@@ -29,7 +29,7 @@ export function ShopCard(props: CoffeeCardProps) {
     const time = setTimeout(() => {
       removeCoffeeItem(props)
       setRemoveCoffe(false)
-    }, 1100)
+    }, 500)
 
     return () => clearTimeout(time)
   }

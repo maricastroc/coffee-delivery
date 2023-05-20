@@ -29,6 +29,10 @@ export const ButtonContainer = styled.button`
   border: none;
   background-color: transparent;
 
+  &:focus {
+    box-shadow: none;
+  }
+
   &:disabled {
     cursor: not-allowed;
   }
