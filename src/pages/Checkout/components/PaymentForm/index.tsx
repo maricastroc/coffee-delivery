@@ -20,11 +20,16 @@ const paymentOptions = [
   { type: 'money', label: 'Money', icon: <Money size={22} /> },
 ]
 
-export function PaymentForm() {
+interface PaymentFormProps {
+  onSelect: (type: string) => void
+}
+
+export function PaymentForm(props: PaymentFormProps) {
   const [paymentType, setPaymentType] = useState('')
 
   const handlePaymentTypeChange = (type: string) => {
     setPaymentType(type)
+    props.onSelect(type)
   }
 
   return (
@@ -44,6 +49,7 @@ export function PaymentForm() {
         {paymentOptions.map((option) => (
           <Option
             key={option.type}
+            type="button"
             className={paymentType === option.type ? 'checked' : ''}
             onClick={() => handlePaymentTypeChange(option.type)}
           >

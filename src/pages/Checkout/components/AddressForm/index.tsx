@@ -19,16 +19,26 @@ import axios from 'axios'
 
 import { MapPinLine } from 'phosphor-react'
 
-export function AddressForm() {
-  const { register, watch, setValue } = useForm()
+export type AddressType = {
+  zip: string
+  street: string
+  number: string
+  complement?: string
+  neighborhood: string
+  city: string
+  uf: string
+}
 
-  const cep = useDebounce(watch('cep'), 500)
+export function AddressForm() {
+  const { watch, setValue, register } = useForm()
+
+  const zip = useDebounce(watch('zip'), 500)
 
   useEffect(() => {
     async function getAddress() {
-      if (cep) {
+      if (zip) {
         const { data } = await axios.get(
-          `https://viacep.com.br/ws/${cep}/json/`,
+          `https://viacep.com.br/ws/${zip}/json/`,
         )
 
         if (data.erro) {
@@ -43,7 +53,7 @@ export function AddressForm() {
     }
 
     getAddress()
-  }, [cep, setValue])
+  }, [zip, setValue])
 
   return (
     <AddressContainer>
@@ -61,11 +71,11 @@ export function AddressForm() {
       <AddressInfoContent>
         <Input
           type="text"
-          id="cep"
+          id="zip"
           placeholder="ZIP Code"
           inputMode="numeric"
-          pattern="^[0-9]*$"
-          {...register('cep')}
+          pattern="^[0-9\-]*$"
+          {...register('zip')}
           required
         />
         <Input
@@ -80,7 +90,7 @@ export function AddressForm() {
             type="number"
             id="number"
             placeholder="Number"
-            {...register('number')}
+            {...register('number', { valueAsNumber: true })}
             required
           />
           <ComplementContainer>

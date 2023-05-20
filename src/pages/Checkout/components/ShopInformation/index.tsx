@@ -87,25 +87,25 @@ export function ShopInformation() {
           )}
         </ShopCardsContainer>
         {!isListEmpty && (
-          <ShopInfoTextContainer>
-            <TextContainer>
-              <p>Total itens</p>
-              <span>{subtotalFormatted}</span>
-            </TextContainer>
-            <TextContainer>
-              <p>Delivery</p>
-              <span>{deliveryPriceFormatted}</span>
-            </TextContainer>
-            <TextContainer>
-              <strong>Total</strong>
-              <strong>{totalPriceFormatted}</strong>
-            </TextContainer>
-          </ShopInfoTextContainer>
-        )}
-        {!isListEmpty && (
-          <ConfirmButton>
-            <ConfirmButtonLabel>Confirm delivery</ConfirmButtonLabel>
-          </ConfirmButton>
+          <>
+            <ShopInfoTextContainer>
+              <TextContainer>
+                <p>Total itens</p>
+                <span>{subtotalFormatted}</span>
+              </TextContainer>
+              <TextContainer>
+                <p>Delivery</p>
+                <span>{deliveryPriceFormatted}</span>
+              </TextContainer>
+              <TextContainer>
+                <strong>Total</strong>
+                <strong>{totalPriceFormatted}</strong>
+              </TextContainer>
+            </ShopInfoTextContainer>
+            <ConfirmButton type="submit">
+              <ConfirmButtonLabel>Confirm delivery</ConfirmButtonLabel>
+            </ConfirmButton>
+          </>
         )}
       </ShopInfoBox>
     </ShopInfoContainer>
