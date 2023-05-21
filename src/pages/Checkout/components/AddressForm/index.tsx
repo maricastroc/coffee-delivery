@@ -12,8 +12,8 @@ import {
   TextContainer,
 } from './styles'
 
-import { useEffect } from 'react'
-import { useForm } from 'react-hook-form'
+import { forwardRef, useEffect } from 'react'
+import { useFormContext, Controller } from 'react-hook-form'
 import { useDebounce } from '../../../../utils/useDebounce'
 import axios from 'axios'
 
@@ -29,8 +29,8 @@ export type AddressType = {
   uf: string
 }
 
-export function AddressForm() {
-  const { watch, setValue, register } = useForm()
+export const AddressForm = forwardRef<HTMLInputElement>((_, _ref) => {
+  const { watch, setValue, control } = useFormContext<AddressType>()
 
   const zip = useDebounce(watch('zip'), 500)
 
@@ -69,64 +69,82 @@ export function AddressForm() {
         </TextContainer>
       </AddressText>
       <AddressInfoContent>
-        <Input
-          type="text"
-          id="zip"
-          placeholder="ZIP Code"
-          inputMode="numeric"
-          pattern="^[0-9\-]*$"
-          {...register('zip')}
-          required
+        <Controller
+          name="zip"
+          defaultValue=""
+          control={control}
+          rules={{ required: true }}
+          render={({ field }) => (
+            <Input className="cep" placeholder="CEP" {...field} />
+          )}
         />
-        <Input
-          type="text"
-          id="street"
-          placeholder="Street"
-          {...register('street')}
-          required
+        <Controller
+          name="street"
+          defaultValue=""
+          control={control}
+          rules={{ required: true }}
+          render={({ field }) => (
+            <Input className="street" placeholder="Street" {...field} />
+          )}
         />
         <InputContainer>
-          <Input
-            type="number"
-            id="number"
-            placeholder="Number"
-            {...register('number', { valueAsNumber: true })}
-            required
+          <Controller
+            name="number"
+            defaultValue=""
+            control={control}
+            rules={{ required: true, pattern: /^[0-9]+$/ }}
+            render={({ field }) => (
+              <Input className="number" placeholder="Number" {...field} />
+            )}
           />
           <ComplementContainer>
-            <Input
-              type="text"
-              id="complement"
-              placeholder="Complement"
-              {...register('complement')}
+            <Controller
+              name="complement"
+              defaultValue=""
+              control={control}
+              render={() => (
+                <Input className="complement" placeholder="Complement" />
+              )}
             />
             <Span>Optional</Span>
           </ComplementContainer>
         </InputContainer>
         <InputContainer>
-          <Input
-            type="text"
-            id="neighborhood"
-            placeholder="Neighborhood"
-            {...register('neighborhood')}
-            required
+          <Controller
+            name="neighborhood"
+            defaultValue=""
+            control={control}
+            rules={{ required: true }}
+            render={({ field }) => (
+              <Input
+                className="neighborhood"
+                placeholder="Neighborhood"
+                {...field}
+              />
+            )}
           />
-          <Input
-            type="text"
-            id="city"
-            placeholder="City"
-            {...register('city')}
-            required
+          <Controller
+            name="city"
+            defaultValue=""
+            control={control}
+            rules={{ required: true }}
+            render={({ field }) => (
+              <Input className="city" placeholder="City" {...field} />
+            )}
           />
-          <Input
-            type="text"
-            id="uf"
-            placeholder="UF"
-            {...register('uf')}
-            required
+          <Controller
+            name="uf"
+            defaultValue=""
+            control={control}
+            rules={{ required: true }}
+            render={({ field }) => (
+              <Input className="uf" placeholder="UF" {...field} />
+            )}
           />
         </InputContainer>
       </AddressInfoContent>
     </AddressContainer>
   )
-}
+})
+
+AddressForm.displayName = 'AddressForm'

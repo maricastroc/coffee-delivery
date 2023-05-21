@@ -25,6 +25,10 @@ export const IconContainer = styled.span`
   padding: 0.4rem;
   border-radius: 50%;
 
+  .icon {
+    color: ${(props) => props.theme['base-white']};
+  }
+
   &.bg-orange {
     background-color: ${(props) => props.theme['yellow-dark']};
   }

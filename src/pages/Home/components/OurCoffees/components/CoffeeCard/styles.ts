@@ -87,6 +87,10 @@ export const ShopButton = styled.button`
   padding: 0.4rem;
   transition: background-color 300ms;
 
+  .icon {
+    color: ${(props) => props.theme['base-white']};
+  }
+
   &:hover {
     background-color: ${(props) => props.theme['purple-medium']};
   }
@@ -94,9 +98,4 @@ export const ShopButton = styled.button`
   &:focus {
     box-shadow: none;
   }
-`
-
-export const ShopButtonImage = styled.img`
-  width: 1.365rem;
-  height: 1.365rem;
 `

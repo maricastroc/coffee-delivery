@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 
 import {
   Container,
@@ -13,6 +13,7 @@ import {
 } from './styles'
 
 import { Bank, CreditCard, CurrencyDollar, Money } from 'phosphor-react'
+import { CheckoutContext } from '../../../../contexts/CheckoutContext'
 
 const paymentOptions = [
   { type: 'credit', label: 'Credit Card', icon: <CreditCard size={22} /> },
@@ -21,15 +22,17 @@ const paymentOptions = [
 ]
 
 interface PaymentFormProps {
-  onSelect: (type: string) => void
+  onSelect: () => void
 }
 
 export function PaymentForm(props: PaymentFormProps) {
   const [paymentType, setPaymentType] = useState('')
+  const { setPaymentMethod } = useContext(CheckoutContext)
 
   const handlePaymentTypeChange = (type: string) => {
     setPaymentType(type)
-    props.onSelect(type)
+    setPaymentMethod(type)
+    props.onSelect()
   }
 
   return (
