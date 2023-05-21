@@ -1,6 +1,6 @@
-# Focus-To-Do
+# Coffee-Delivery
 
-<p>Focus Timer and Task Manager build with ReactJS.</p>
+
 <br/>
 <h2>:books: Project Description</h2>
 <p>In this project, I developed an application to manage a shopping cart for a fictional coffee shop, with the following functionalities:</p>
@@ -11,9 +11,8 @@
 <li>Form for the user to fill in his address</li>
 <li>Display the total items in the cart in the Header</li>
 <li>Display the total value of the sum of items in the cart multiplied by the value</li>
-
-
-<h2>:pushpin: What did I learn</h2>
+<br/>
+<h2>:pushpin: What did I learn?</h2>
 
 <p>In this project, I had the opportunity to practice working with many of ReactJS features, using styled-components, contexts, reducers, immers, routing with React Router DOM, ReactHook Form and hookform/resolvers, using zod for validation. Also, I was able to work deeper with TypeScript, allowing a better organization project's files and preventing bugs.</p>
 
@@ -21,8 +20,6 @@
 
 <p>In addition, I could practice using hooks like useDebounce and useMemo, as well as creating my own useLocation hook using the Geolocation API.</p>
 
-</p>
-<p dir="auto"> </p>
 <br/>
 <h2>:mag: Links</h2>
 <li><a href="https://maricastroc-focus-to-do.netlify.app/" target="_blank">Preview Site</a></li>
@@ -40,8 +37,9 @@
 - [styled-components](https://styled-components.com/)
 - [ESLint](https://eslint.org/)
 - [Prettier](https://prettier.io/)
+<br/>
 
-# :information_source: How to run the application?
+<h2>:information_source: How to run the application?</h2>
 
 > Clone the repository:
 
@@ -62,8 +60,9 @@ npm run dev
 ```
 
 > :fast_forward: Access [http://localhost:3000](http://localhost:3000) to view the web application.
+<br/>
 
-# :coffee: Authors
+<h2>:coffee: Authors</h2>
 
 <table>
   <tr>
