@@ -1,6 +1,6 @@
 # Coffee-Delivery
 <p align="center">
-    <img alt="Print" src="/assets/print.png" width="800px" />
+    <img alt="Print" src="https://github.com/maricastroc/Coffee-Delivery/blob/main/public/assets/print.png" width="800px" />
 </p>
 
 <br/>
