@@ -88,7 +88,7 @@ npm run dev
         </sub>
        </a>
        <br />
-       <a href="http://github.com/rocketseat/" title="Linkedin">@rocketseat</a>
+       <a href="https://www.linkedin.com/school/rocketseat/" title="Linkedin">@rocketseat</a>
        <br />
        <a href="https://www.rocketseat.com.br/" title="Education Platform">🚀</a>
     </td>
