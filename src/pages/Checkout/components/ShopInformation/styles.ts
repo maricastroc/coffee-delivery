@@ -4,6 +4,12 @@ export const ShopInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+
+  a {
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+  }
 `
 
 export const Heading = styled.h2`

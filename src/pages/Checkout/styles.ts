@@ -1,10 +1,15 @@
 import styled from 'styled-components'
 
+export const CheckoutWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 6rem;
+`
+
 export const CheckoutContainer = styled.form`
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  padding-bottom: 6rem;
   margin-top: 2.5rem;
   width: clamp(10rem, 90vw, 50rem);
 
@@ -12,7 +17,7 @@ export const CheckoutContainer = styled.form`
     flex-direction: row;
     align-items: flex-start;
     justify-content: center;
-    padding: 0 12rem 6rem;
+    padding: 0 12rem;
     width: 100%;
   }
 `
@@ -33,5 +38,21 @@ export const Heading = styled.h2`
 
   @media (min-width: 1440px) {
     font-size: 1.125rem;
+  }
+`
+
+export const ShopInformationContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1rem;
+`
+
+export const Error = styled.div`
+  width: 100%;
+
+  p {
+    color: ${(props) => props.theme['purple-medium']};
+    text-align: end;
   }
 `

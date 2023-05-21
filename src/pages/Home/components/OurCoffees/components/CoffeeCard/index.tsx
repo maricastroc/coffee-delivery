@@ -12,12 +12,12 @@ import {
   Price,
   PriceContainer,
   DollarSign,
-  ShopButtonImage,
   Options,
 } from './styles'
 
 import { QuantityButton } from '../../../../../../components/QuantityButton'
 import { CoffeeListContext } from '../../../../../../contexts/CoffeeListContext'
+import { ShoppingCart } from 'phosphor-react'
 
 export interface CoffeeCardProps {
   id: number
@@ -67,7 +67,7 @@ export function CoffeeCard(props: CoffeeCardProps) {
           />
           <NavLink to="/checkout" title="Checkout">
             <ShopButton>
-              <ShopButtonImage src="/assets/icons/icon-shop-small.svg" alt="" />
+              <ShoppingCart weight="fill" size={22} className="icon" />
             </ShopButton>
           </NavLink>
         </Options>

@@ -5,14 +5,13 @@ import { CoffeeListContext } from '../../contexts/CoffeeListContext'
 
 import {
   ButtonShop,
-  ButtonShopIcon,
   ButtonShopLabel,
   FeaturesContainer,
   HeaderContainer,
   HomeIcon,
   LocationContainer,
-  LocationIcon,
 } from './styles'
+import { MapPin, ShoppingCart } from 'phosphor-react'
 
 export function Header() {
   const { itemsList } = useContext(CoffeeListContext)
@@ -29,7 +28,7 @@ export function Header() {
       </NavLink>
       <FeaturesContainer>
         <LocationContainer>
-          <LocationIcon src="/assets/icons/icon-location.svg" alt="" />
+          <MapPin size={22} weight="fill" className="mapPin_icon" />
           <p>
             {city} {uf}
           </p>
@@ -41,7 +40,7 @@ export function Header() {
                 <p>{totalQuantity}</p>
               </ButtonShopLabel>
             )}
-            <ButtonShopIcon src="/assets/icons/icon-shop.svg" alt="" />
+            <ShoppingCart size={22} weight="fill" className="shopCart_icon" />
           </ButtonShop>
         </NavLink>
       </FeaturesContainer>

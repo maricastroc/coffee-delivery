@@ -55,17 +55,13 @@ export const LocationContainer = styled.div`
   color: ${(props) => props.theme['purple-dark']};
   background-color: ${(props) => props.theme['purple-light']};
 
+  .mapPin_icon {
+    color: ${(props) => props.theme['purple-medium']};
+  }
+
   @media (min-width: 1440px) {
     padding: 0.625rem;
     font-size: 0.875rem;
-  }
-`
-
-export const LocationIcon = styled.img`
-  width: 1.2rem;
-
-  @media (min-width: 1440px) {
-    width: 1.4rem;
   }
 `
 
@@ -78,6 +74,10 @@ export const ButtonShop = styled.button`
   background-color: ${(props) => props.theme['yellow-light']};
   border: none;
   border-radius: 8px;
+
+  .shopCart_icon {
+    color: ${(props) => props.theme['yellow-dark']};
+  }
 
   @media (min-width: 1440px) {
     padding: 0.625rem;

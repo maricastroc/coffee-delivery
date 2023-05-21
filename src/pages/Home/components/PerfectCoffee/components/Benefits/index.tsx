@@ -1,43 +1,48 @@
+import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react'
 import {
   BenefitsContainer,
   BenefitItem,
   BenefitsWrapper,
   Paragraph,
-  Icon,
   IconContainer,
 } from './styles'
+
+const benefits = [
+  {
+    icon: ShoppingCart,
+    color: 'orange',
+    text: 'Simple and secure purchase',
+  },
+  {
+    icon: Coffee,
+    color: 'yellow',
+    text: 'Fast and tracked delivery',
+  },
+  {
+    icon: Timer,
+    color: 'gray',
+    text: 'The packaging keeps the coffee intact',
+  },
+  {
+    icon: Package,
+    color: 'purple',
+    text: 'You get a freshly brewed coffee',
+  },
+]
 
 export function Benefits() {
   return (
     <BenefitsContainer>
-      <BenefitsWrapper>
-        <BenefitItem>
-          <IconContainer className="bg-orange">
-            <Icon src="/assets/icons/icon-shop-small.svg" alt="" />
-          </IconContainer>
-          <Paragraph>Simple and secure purchase</Paragraph>
-        </BenefitItem>
-        <BenefitItem>
-          <IconContainer className="bg-yellow">
-            <Icon src="/assets/icons/icon-coffee-small.svg" alt="" />
-          </IconContainer>
-          <Paragraph>Fast and tracked delivery</Paragraph>
-        </BenefitItem>
-      </BenefitsWrapper>
-      <BenefitsWrapper>
-        <BenefitItem>
-          <IconContainer className="bg-gray">
-            <Icon src="/assets/icons/icon-delivery-small.svg" alt="" />
-          </IconContainer>
-          <Paragraph>The packaging keeps the coffee intact</Paragraph>
-        </BenefitItem>
-        <BenefitItem>
-          <IconContainer className="bg-purple">
-            <Icon src="/assets/icons/icon-package-small.svg" alt="" />
-          </IconContainer>
-          <Paragraph>You get a freshly brewed coffee</Paragraph>
-        </BenefitItem>
-      </BenefitsWrapper>
+      {benefits.map((benefit, index) => (
+        <BenefitsWrapper key={index}>
+          <BenefitItem>
+            <IconContainer className={`bg-${benefit.color}`}>
+              <benefit.icon weight="fill" size={16} className="icon" />
+            </IconContainer>
+            <Paragraph>{benefit.text}</Paragraph>
+          </BenefitItem>
+        </BenefitsWrapper>
+      ))}
     </BenefitsContainer>
   )
 }
