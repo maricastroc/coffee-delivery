@@ -78,7 +78,7 @@ export const Input = styled.input`
   }
 
   @media (min-width: 1440px) {
-    &[name='cep'],
+    &[name='zip'],
     &[name='number'],
     &[name='neighborhood'],
     &[name='number'] {

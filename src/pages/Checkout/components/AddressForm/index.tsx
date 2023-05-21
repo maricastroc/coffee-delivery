@@ -74,7 +74,7 @@ export const AddressForm = forwardRef<HTMLInputElement>((_, _ref) => {
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
-            <Input className="cep" placeholder="CEP" {...field} />
+            <Input className="zip" placeholder="ZIP" {...field} />
           )}
         />
         <Controller
