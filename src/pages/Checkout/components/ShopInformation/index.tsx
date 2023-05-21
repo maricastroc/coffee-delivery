@@ -4,6 +4,7 @@ import { CoffeeListContext } from '../../../../contexts/CoffeeListContext'
 import {
   ConfirmButton,
   ConfirmButtonLabel,
+  Error,
   Heading,
   Separator,
   ShopCardsContainer,
@@ -19,10 +20,22 @@ import { EmptyList } from './components/EmptyShop'
 
 import { COFFEES_UF_STORAGE_KEY } from '../../../../hooks/useLocation'
 import deliveryPriceByStateJSON from '../../../../data/delivery-price-by-state.json'
+import { CheckoutContext } from '../../../../contexts/CheckoutContext'
 
 export function ShopInformation() {
   const { itemsList } = useContext(CoffeeListContext)
+  const { paymentMethod } = useContext(CheckoutContext)
+  const [isPaymentMissing, setIsPaymentMissing] = useState(false)
+
   const [isListEmpty, setIsListEmpty] = useState(false)
+
+  useEffect(() => {
+    if (paymentMethod === 'waiting') {
+      setIsPaymentMissing(true)
+    } else {
+      setIsPaymentMissing(false)
+    }
+  }, [paymentMethod])
 
   useEffect(() => {
     itemsList.length > 0 ? setIsListEmpty(false) : setIsListEmpty(true)
@@ -68,46 +81,55 @@ export function ShopInformation() {
     currency: 'USD',
   }).format(totalPrice)
 
+  console.log(paymentMethod)
+
   return (
-    <ShopInfoContainer>
-      <Heading>Selected coffees</Heading>
-      <ShopInfoBox>
-        <ShopCardsContainer>
-          {!isListEmpty ? (
-            itemsList.map((item: CoffeeCardProps) => {
-              return (
-                <>
-                  <ShopCard key={item.id} {...item} />
-                  <Separator></Separator>
-                </>
-              )
-            })
-          ) : (
-            <EmptyList />
+    <>
+      <ShopInfoContainer>
+        <Heading>Selected coffees</Heading>
+        <ShopInfoBox>
+          <ShopCardsContainer>
+            {!isListEmpty ? (
+              itemsList.map((item: CoffeeCardProps) => {
+                return (
+                  <>
+                    <ShopCard key={item.id} {...item} />
+                    <Separator></Separator>
+                  </>
+                )
+              })
+            ) : (
+              <EmptyList />
+            )}
+          </ShopCardsContainer>
+          {!isListEmpty && (
+            <>
+              <ShopInfoTextContainer>
+                <TextContainer>
+                  <p>Total itens</p>
+                  <span>{subtotalFormatted}</span>
+                </TextContainer>
+                <TextContainer>
+                  <p>Delivery</p>
+                  <span>{deliveryPriceFormatted}</span>
+                </TextContainer>
+                <TextContainer>
+                  <strong>Total</strong>
+                  <strong>{totalPriceFormatted}</strong>
+                </TextContainer>
+              </ShopInfoTextContainer>
+              <ConfirmButton type="submit">
+                <ConfirmButtonLabel>Confirm delivery</ConfirmButtonLabel>
+              </ConfirmButton>
+            </>
           )}
-        </ShopCardsContainer>
-        {!isListEmpty && (
-          <>
-            <ShopInfoTextContainer>
-              <TextContainer>
-                <p>Total itens</p>
-                <span>{subtotalFormatted}</span>
-              </TextContainer>
-              <TextContainer>
-                <p>Delivery</p>
-                <span>{deliveryPriceFormatted}</span>
-              </TextContainer>
-              <TextContainer>
-                <strong>Total</strong>
-                <strong>{totalPriceFormatted}</strong>
-              </TextContainer>
-            </ShopInfoTextContainer>
-            <ConfirmButton type="submit">
-              <ConfirmButtonLabel>Confirm delivery</ConfirmButtonLabel>
-            </ConfirmButton>
-          </>
-        )}
-      </ShopInfoBox>
-    </ShopInfoContainer>
+        </ShopInfoBox>
+      </ShopInfoContainer>
+      {isPaymentMissing && (
+        <Error>
+          <p>* Please inform your payment method</p>
+        </Error>
+      )}
+    </>
   )
 }

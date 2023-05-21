@@ -71,7 +71,6 @@ export const AddressForm = forwardRef<HTMLInputElement>((_, _ref) => {
       <AddressInfoContent>
         <Controller
           name="zip"
-          defaultValue=""
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
@@ -80,7 +79,6 @@ export const AddressForm = forwardRef<HTMLInputElement>((_, _ref) => {
         />
         <Controller
           name="street"
-          defaultValue=""
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
@@ -90,7 +88,6 @@ export const AddressForm = forwardRef<HTMLInputElement>((_, _ref) => {
         <InputContainer>
           <Controller
             name="number"
-            defaultValue=""
             control={control}
             rules={{ required: true, pattern: /^[0-9]+$/ }}
             render={({ field }) => (
@@ -100,7 +97,6 @@ export const AddressForm = forwardRef<HTMLInputElement>((_, _ref) => {
           <ComplementContainer>
             <Controller
               name="complement"
-              defaultValue=""
               control={control}
               render={() => (
                 <Input className="complement" placeholder="Complement" />
@@ -112,7 +108,6 @@ export const AddressForm = forwardRef<HTMLInputElement>((_, _ref) => {
         <InputContainer>
           <Controller
             name="neighborhood"
-            defaultValue=""
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
@@ -125,7 +120,6 @@ export const AddressForm = forwardRef<HTMLInputElement>((_, _ref) => {
           />
           <Controller
             name="city"
-            defaultValue=""
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
@@ -134,7 +128,6 @@ export const AddressForm = forwardRef<HTMLInputElement>((_, _ref) => {
           />
           <Controller
             name="uf"
-            defaultValue=""
             control={control}
             rules={{ required: true }}
             render={({ field }) => (

@@ -9,34 +9,46 @@ import {
   CheckoutInfoContainer,
   CheckoutWrapper,
   Heading,
-  Error,
   ShopInformationContainer,
 } from './styles'
 import { CheckoutContext } from '../../contexts/CheckoutContext'
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 
 export type FormDataType = AddressType
 
 export function Checkout() {
   const navigate = useNavigate()
-  const { paymentMethod, handleCheckout } = useContext(CheckoutContext)
-  const [paymentMissing, setPaymentMissing] = useState(false)
+
+  const { paymentMethod, setPaymentMethod, handleCheckout } =
+    useContext(CheckoutContext)
 
   const methods = useForm<FormDataType>()
 
   const { handleSubmit } = methods
 
-  const onSubmit = (data: AddressType) => {
-    if (!paymentMethod) {
-      setPaymentMissing(true)
+  function verifyPayment(paymentMethod: string) {
+    if (
+      paymentMethod !== 'Credit Card' &&
+      paymentMethod !== 'Debit Card' &&
+      paymentMethod !== 'Money'
+    ) {
+      setPaymentMethod('waiting')
+    } else {
+      setPaymentMethod(paymentMethod)
     }
+  }
 
-    handleCheckout({
-      address: data,
-      paymentMethod,
-    })
+  function onSubmit(data: AddressType) {
+    verifyPayment(paymentMethod)
 
-    navigate('/checkout/success')
+    if (paymentMethod !== '' && paymentMethod !== 'waiting') {
+      handleCheckout({
+        address: data,
+        paymentMethod,
+      })
+
+      navigate('/checkout/success')
+    }
   }
 
   return (
@@ -47,15 +59,10 @@ export function Checkout() {
           <FormProvider {...methods}>
             <AddressForm />
           </FormProvider>
-          <PaymentForm onSelect={() => setPaymentMissing(false)} />
+          <PaymentForm />
         </CheckoutInfoContainer>
         <ShopInformationContainer>
           <ShopInformation />
-          {paymentMissing && (
-            <Error>
-              <p>* Please inform your payment method</p>
-            </Error>
-          )}
         </ShopInformationContainer>
       </CheckoutContainer>
     </CheckoutWrapper>
