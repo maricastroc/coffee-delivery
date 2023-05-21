@@ -10,6 +10,8 @@ interface CheckoutContextData {
   paymentMethod: string
   setPaymentMethod: (payment: string) => void
   checkoutData: HandleCheckoutType | null
+  setIsPaymentMissing: (payment: string) => void
+  isPaymentMissing: string
   handleCheckout: (values: HandleCheckoutType) => void
 }
 
@@ -25,6 +27,7 @@ export function CheckoutContextProvider({
   children,
 }: CheckoutContextProviderProps) {
   const [paymentMethod, setPaymentMethod] = useState('')
+  const [isPaymentMissing, setIsPaymentMissing] = useState('none')
   const [checkoutData, setCheckoutData] = useState<HandleCheckoutType | null>(
     null,
   )
@@ -38,6 +41,8 @@ export function CheckoutContextProvider({
     setPaymentMethod,
     handleCheckout,
     checkoutData,
+    isPaymentMissing,
+    setIsPaymentMissing,
   }
 
   return (

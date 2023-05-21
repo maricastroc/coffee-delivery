@@ -126,3 +126,11 @@ export const ConfirmButtonLabel = styled.p`
   text-transform: uppercase;
   font-weight: 700;
 `
+export const Error = styled.div`
+  width: 100%;
+
+  p {
+    color: ${(props) => props.theme['purple-medium']};
+    text-align: end;
+  }
+`

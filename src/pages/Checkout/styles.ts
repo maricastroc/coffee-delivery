@@ -47,12 +47,3 @@ export const ShopInformationContainer = styled.div`
   align-items: flex-end;
   gap: 1rem;
 `
-
-export const Error = styled.div`
-  width: 100%;
-
-  p {
-    color: ${(props) => props.theme['purple-medium']};
-    text-align: end;
-  }
-`

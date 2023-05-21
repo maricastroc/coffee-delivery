@@ -50,28 +50,37 @@ export function Success() {
                 <p>
                   Delivery at {''}
                   <span>
-                    {checkoutData?.address.street},
+                    {checkoutData?.address.street}, {''}
                     {checkoutData?.address.number}
                   </span>
                 </p>
                 <p>
-                  {checkoutData?.address.neighborhood},
+                  {checkoutData?.address.neighborhood}, {''}
                   {checkoutData?.address.city} - {checkoutData?.address.uf}
                 </p>
               </TextWrapper>
             </LineWrapper>
           </InfoWrapper>
           <InfoWrapper>
-            <TextWrapper>
-              <p>Delivery forecast</p>
-              <strong>20 - 30min</strong>
-            </TextWrapper>
+            <LineWrapper>
+              <Icon color="yellow" icon={<MapPin weight="fill" size={16} />} />
+              <TextWrapper>
+                <p>Delivery forecast</p>
+                <strong>20 - 30min</strong>
+              </TextWrapper>
+            </LineWrapper>
           </InfoWrapper>
           <InfoWrapper>
-            <TextWrapper>
-              <p>Payment on delivery</p>
-              <strong>{checkoutData.paymentMethod}</strong>
-            </TextWrapper>
+            <LineWrapper>
+              <Icon
+                color="yellowDark"
+                icon={<MapPin weight="fill" size={16} />}
+              />
+              <TextWrapper>
+                <p>Payment on delivery</p>
+                <strong>{checkoutData.paymentMethod}</strong>
+              </TextWrapper>
+            </LineWrapper>
           </InfoWrapper>
         </InfoContainer>
       </ResumeSection>
