@@ -44,17 +44,8 @@ export function ShopCard(props: CoffeeCardProps) {
             <CardPrice>$ {props.price}</CardPrice>
           </TextContainer>
           <ButtonsContainer>
-            <QuantityButton
-              key={props.id}
-              id={props.id}
-              title={props.title}
-              subtitle={props.subtitle}
-              tags={props.tags}
-              img_source={props.img_source}
-              price={props.price}
-              quantity={props.quantity}
-            />
-            <RemoveButton onClick={() => handleRemoveCoffee()}>
+            <QuantityButton key={props.id} {...props} />
+            <RemoveButton onClick={handleRemoveCoffee}>
               <Trash size={16} />
               <RemoveLabel>Remove</RemoveLabel>
             </RemoveButton>

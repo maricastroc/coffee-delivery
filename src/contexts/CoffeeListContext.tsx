@@ -7,6 +7,7 @@ interface CoffeeListContextData {
   increaseCoffeeQuantity: (coffee: CoffeeCardProps) => void
   decreaseCoffeeQuantity: (coffee: CoffeeCardProps) => void
   removeCoffeeItem: (coffee: CoffeeCardProps) => void
+  resetList: () => void
 }
 
 export const CoffeeListContext = createContext<CoffeeListContextData>(
@@ -46,11 +47,16 @@ export function CoffeeListContextProvider({
     }
   }
 
+  const resetList = () => {
+    dispatch({ type: ActionTypes.RESET_LIST })
+  }
+
   const coffeeListContextValue: CoffeeListContextData = {
     itemsList,
     increaseCoffeeQuantity,
     decreaseCoffeeQuantity,
     removeCoffeeItem,
+    resetList,
   }
 
   return (

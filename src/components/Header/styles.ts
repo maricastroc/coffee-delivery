@@ -13,6 +13,11 @@ export const HeaderContainer = styled.header`
     }
   }
 
+  @media (min-width: 980px) {
+    padding: 2.5rem 5rem;
+    width: 100%;
+  }
+
   @media (min-width: 1440px) {
     padding: 2.5rem 12rem;
     width: 100%;

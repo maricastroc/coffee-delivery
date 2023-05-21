@@ -6,6 +6,7 @@ export enum ActionTypes {
   INCREASE_QUANTITY = 'INCREASE_QUANTITY',
   DECREASE_QUANTITY = 'DECREASE_QUANTITY',
   REMOVE_COFFEE = 'REMOVE_COFFEE',
+  RESET_LIST = 'RESET_LIST',
 }
 
 type Action =
@@ -13,6 +14,7 @@ type Action =
   | { type: ActionTypes.INCREASE_QUANTITY; id: number }
   | { type: ActionTypes.DECREASE_QUANTITY; id: number }
   | { type: ActionTypes.REMOVE_COFFEE; id: number }
+  | { type: ActionTypes.RESET_LIST }
 
 export function coffeeListReducer(state: CoffeeCardProps[], action: Action) {
   switch (action.type) {
@@ -31,6 +33,9 @@ export function coffeeListReducer(state: CoffeeCardProps[], action: Action) {
 
     case ActionTypes.REMOVE_COFFEE:
       return state.filter((item) => item.id !== action.id)
+
+    case ActionTypes.RESET_LIST: // novo case
+      return []
 
     default:
       return state
