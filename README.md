@@ -1,5 +1,7 @@
 # Coffee-Delivery
-
+<p align="center">
+    <img alt="Print" src="/assets/print.png" width="800px" />
+</p>
 
 <br/>
 <h2>:books: Project Description</h2>
