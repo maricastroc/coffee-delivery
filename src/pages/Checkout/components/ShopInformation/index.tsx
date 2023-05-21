@@ -62,26 +62,17 @@ export function ShopInformation() {
     }, 0)
   }, [itemsList])
 
-  const subtotalFormatted = new Intl.NumberFormat('en', {
-    style: 'currency',
-    currency: 'USD',
-  }).format(subtotal)
+  function formatCurrency(value: number) {
+    return new Intl.NumberFormat('en', {
+      style: 'currency',
+      currency: 'USD',
+    }).format(value)
+  }
 
-  const deliveryPriceFormatted = new Intl.NumberFormat('en', {
-    style: 'currency',
-    currency: 'USD',
-  }).format(deliveryPrice)
-
-  const totalPrice = useMemo(() => {
-    return subtotal + deliveryPrice
-  }, [deliveryPrice, subtotal])
-
-  const totalPriceFormatted = new Intl.NumberFormat('en', {
-    style: 'currency',
-    currency: 'USD',
-  }).format(totalPrice)
-
-  console.log(paymentMethod)
+  const subtotalFormatted = formatCurrency(subtotal)
+  const deliveryPriceFormatted = formatCurrency(deliveryPrice)
+  const totalPrice = subtotal + deliveryPrice
+  const totalPriceFormatted = formatCurrency(totalPrice)
 
   return (
     <>

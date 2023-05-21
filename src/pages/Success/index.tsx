@@ -15,23 +15,26 @@ import {
 } from './styles'
 import { MapPin } from 'phosphor-react'
 import { Icon } from './components/Icon'
+import { CoffeeListContext } from '../../contexts/CoffeeListContext'
 
 export function Success() {
   const navigate = useNavigate()
 
-  const { checkoutData } = useContext(CheckoutContext)
+  const { checkoutData, setPaymentMethod } = useContext(CheckoutContext)
+  const { resetList } = useContext(CoffeeListContext)
 
   useEffect(() => {
     if (!checkoutData) {
       navigate('/')
+    } else {
+      resetList()
+      setPaymentMethod('')
     }
   })
 
   if (!checkoutData) {
     return <></>
   }
-
-  console.log(checkoutData.address)
 
   return (
     <SuccessContainer>
