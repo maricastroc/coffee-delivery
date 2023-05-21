@@ -22,7 +22,7 @@
 
 <br/>
 <h2>:mag: Links</h2>
-<li><a href="https://maricastroc-focus-to-do.netlify.app/" target="_blank">Preview Site</a></li>
+<li><a href="https://maricastroc-coffee-delivery.netlify.app" target="_blank">Preview Site</a></li>
 <br/>
 <h2>:computer: My Process</h2>
 <h3>Built with:</h3>
